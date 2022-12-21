@@ -1,0 +1,16 @@
+(유료버전은 컴포넌트로 추가)
+위에 using DG.Tweening;
+transform.DO어쩌구로 트위닝 효과 사용 가능
+transform.DOMove(vector3.up, 5)같이 하면 위쪽으로 5초동안 이동함
+
+material mat=getcomponent로 불러와서
+mat.DOColor(Color.cyan,5)처럼 색깔을 서서히 변경도 가능
+
+ui같은 경우엔
+recttransform rt를 getcomponent해서
+rt.doanchorposY(0,1)로 텍스트를 애니메이션처럼 슉 올리는거 가능
+
+뒤에 .setdelay(1.5f)로 딜레이를 주는것도 가능
+그 뒤에 .setease(ease.outelastic)으로 튕기는 효과 가능
+
+txt.dotext("어쩌구저쩌구",2,true,scramblemode.all)로 글자가 나올때 섞이면서 나옴
