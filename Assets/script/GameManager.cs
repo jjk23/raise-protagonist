@@ -8,11 +8,18 @@ public class GameManager : MonoBehaviour
     public int def = 5;
     public int spd = 5;
     public int hp = 300;
-    public int gold = 1000;
+    public int gold = 100;
     public int enstr;
     public int endef;
     public int enspd;
     public int enhp;
+    public bool poison=false;
+    public bool paralyze=false;
+    public bool tired=false;
+    public bool blind = false;
+    public bool blood = false;
+    public bool silence = false;
+    public bool curse = false;
 
     //게임매니저의 인스턴스를 담는 전역변수(static 변수이지만 이해하기 쉽게 전역변수라고 하겠다).
     //이 게임 내에서 게임매니저 인스턴스는 이 instance에 담긴 녀석만 존재하게 할 것이다.
@@ -51,5 +58,15 @@ public class GameManager : MonoBehaviour
             }
             return instance;
         }
+    }
+    public void cure()//모든 상태이상 치유
+    {
+        poison = false;
+        paralyze= false;
+        blind= false;
+        curse=false;
+        tired=false;
+        blood= false;
+        silence= false; 
     }
 }
