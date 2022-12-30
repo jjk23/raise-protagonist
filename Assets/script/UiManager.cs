@@ -7,15 +7,24 @@ using DG.Tweening;
 
 public class UiManager : MonoBehaviour
 {
+    public int dinex = 0;
     public AudioSource oksound;
     public AudioSource nosound;
+    public AudioSource restsound;
     public TextMeshProUGUI strt;
     public TextMeshProUGUI deft;
     public TextMeshProUGUI spdt;
     public TextMeshProUGUI goldt;
+    public TextMeshProUGUI dtext;
     public GameObject restui;
     public GameObject dialogue;
     public Image black;
+    public Image dimage;
+    public Sprite[] sprites=new Sprite[100];
+    #region 스프라이트 인덱스 정리
+    /*0:암시장 문지기
+     */
+    #endregion
     // Start is called before the first frame update
     void Start()
     {
@@ -39,16 +48,27 @@ public class UiManager : MonoBehaviour
     }
     public void clickblack()
     {
-
+        dialogue.SetActive(true);
+        dimage.sprite = sprites[0];
+        GameManager.Instance.dindex = 0;
     }
     public void clickrest()
     {
+        StartCoroutine("restco");
+    }
+    IEnumerator restco()
+    {
         black.gameObject.SetActive(true);
-        black.material.DOFade(1, 0.5f);
+        restsound.Play();
+        crest();
+        black.DOFade(1, 4f);
+        yield return new WaitForSeconds(5);
+        black.DOFade(0, 3f);
+        yield return new WaitForSeconds(3);
+        black.gameObject.SetActive(false);
         GameManager.Instance.gold -= 50;
         GameManager.Instance.hp = 300;
-        GameManager.Instance.cure();
-        crest();
+        GameManager.Instance.cure();        
     }
     public void crest()//cancel rest
     {

@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public int endef;
     public int enspd;
     public int enhp;
+    public int dindex;
     public bool poison=false;
     public bool paralyze=false;
     public bool tired=false;
