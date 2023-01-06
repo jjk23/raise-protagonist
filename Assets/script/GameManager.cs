@@ -13,7 +13,12 @@ public class GameManager : MonoBehaviour
     public int endef;
     public int enspd;
     public int enhp;
-    public int dindex;
+    public int dindex;//대화창 인덱스
+    #region 인덱스 설명
+    /*
+     * 0:vip없이 암시장 출입 대화
+     */
+    #endregion
     public bool poison=false;
     public bool paralyze=false;
     public bool tired=false;

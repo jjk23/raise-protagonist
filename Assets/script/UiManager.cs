@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 using TMPro;
 using DG.Tweening;
+using Michsky.MUIP;
 
 public class UiManager : MonoBehaviour
 {
@@ -11,24 +13,22 @@ public class UiManager : MonoBehaviour
     public AudioSource oksound;
     public AudioSource nosound;
     public AudioSource restsound;
+    public AudioSource villagebgm;
+    public AudioMixer mixer;
     public TextMeshProUGUI strt;
     public TextMeshProUGUI deft;
     public TextMeshProUGUI spdt;
     public TextMeshProUGUI goldt;
-    public TextMeshProUGUI dtext;
+    public RadialSlider mastervol;
+    public RadialSlider bgmvol;
+    public RadialSlider sevol;
     public GameObject restui;
-    public GameObject dialogue;
-    public Image black;
-    public Image dimage;
-    public Sprite[] sprites=new Sprite[100];
-    #region 스프라이트 인덱스 정리
-    /*0:암시장 문지기
-     */
-    #endregion
+    public GameObject setui;
+    public Image black;    
     // Start is called before the first frame update
     void Start()
     {
-        
+        villagebgm.Play();
     }
 
     // Update is called once per frame
@@ -47,9 +47,7 @@ public class UiManager : MonoBehaviour
         restui.transform.DOScale(new Vector3(1, 1, 1), 0.5f).SetEase(Ease.OutQuad);
     }
     public void clickblack()
-    {
-        dialogue.SetActive(true);
-        dimage.sprite = sprites[0];
+    {    
         GameManager.Instance.dindex = 0;
     }
     public void clickrest()
@@ -58,9 +56,10 @@ public class UiManager : MonoBehaviour
     }
     IEnumerator restco()
     {
+        villagebgm.Pause();
         black.gameObject.SetActive(true);
         restsound.Play();
-        crest();
+        cancel(restui);
         black.DOFade(1, 4f);
         yield return new WaitForSeconds(5);
         black.DOFade(0, 3f);
@@ -68,11 +67,12 @@ public class UiManager : MonoBehaviour
         black.gameObject.SetActive(false);
         GameManager.Instance.gold -= 50;
         GameManager.Instance.hp = 300;
-        GameManager.Instance.cure();        
+        GameManager.Instance.cure();
+        villagebgm.Play();
     }
-    public void crest()//cancel rest
+    public void cancel(GameObject gm)//해당 게임오브젝트를 비활성화
     {
         nosound.Play();
-        restui.SetActive(false);
+        gm.SetActive(false);
     }
 }
