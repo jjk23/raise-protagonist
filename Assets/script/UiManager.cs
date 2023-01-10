@@ -19,16 +19,18 @@ public class UiManager : MonoBehaviour
     public TextMeshProUGUI deft;
     public TextMeshProUGUI spdt;
     public TextMeshProUGUI goldt;
+    public TextMeshProUGUI hpt;
     public RadialSlider mastervol;
     public RadialSlider bgmvol;
     public RadialSlider sevol;
+    public Slider hpslider;
     public GameObject restui;
     public GameObject setui;
     public Image black;    
     // Start is called before the first frame update
     void Start()
     {
-        villagebgm.Play();
+        villagebgm.Play();       
     }
 
     // Update is called once per frame
@@ -36,15 +38,38 @@ public class UiManager : MonoBehaviour
     {
         strt.text = "힘: " + GameManager.Instance.str;
         deft.text = "인내: " + GameManager.Instance.def;
-        spdt.text = "민첩" + GameManager.Instance.spd;
+        spdt.text = "민첩: " + GameManager.Instance.spd;
         goldt.text = "소지금: " + GameManager.Instance.gold;
-    }
-    public void clickinn()
-    {
-        oksound.Play();
-        restui.SetActive(true);
-        restui.transform.localScale = new Vector3(0, 0, 0);
-        restui.transform.DOScale(new Vector3(1, 1, 1), 0.5f).SetEase(Ease.OutQuad);
+        hpt.text = ""+GameManager.Instance.hp;
+        #region 볼륨조절
+        if (mastervol.SliderValue==0)
+        {
+            mixer.SetFloat("Master", -80);
+        }
+        else
+        {
+            mixer.SetFloat("Master", -25 + (mastervol.SliderValue / 4));
+        }
+        if (bgmvol.SliderValue == 0)
+        {
+            mixer.SetFloat("BGM", -80);
+        }
+        else
+        {
+            mixer.SetFloat("BGM", -25 + (mastervol.SliderValue / 4));
+        }
+        if (sevol.SliderValue == 0)
+        {
+            mixer.SetFloat("SE", -80);
+        }
+        else
+        {
+            mixer.SetFloat("SE", -25 + (mastervol.SliderValue / 4));
+        }
+        #endregion
+        hpslider.value = GameManager.Instance.hp;
+        Debug.Log("hp:"+GameManager.Instance.hp);
+        Debug.Log("gd:" + GameManager.Instance.gold);
     }
     public void clickblack()
     {    
@@ -69,6 +94,14 @@ public class UiManager : MonoBehaviour
         GameManager.Instance.hp = 300;
         GameManager.Instance.cure();
         villagebgm.Play();
+    }
+    public void active(GameObject gm)
+    {
+        setui.transform.localPosition = new Vector3(0, 0, 0);//setui는 처음에 active상태로 있어야 소리 재생 가능 즉 active상태로 저 멀리 놨다가 원래 위치로 되돌리는 작업
+        oksound.Play();
+        gm.SetActive(true);
+        gm.transform.localScale = new Vector3(0,0,0);
+        gm.transform.DOScale(new Vector3(1, 1, 1), 0.5f).SetEase(Ease.OutQuad);
     }
     public void cancel(GameObject gm)//해당 게임오브젝트를 비활성화
     {

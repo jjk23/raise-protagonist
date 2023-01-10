@@ -7,8 +7,8 @@ public class GameManager : MonoBehaviour
     public int str = 5;
     public int def = 5;
     public int spd = 5;
-    public int hp = 300;
-    public int gold = 100;
+    public int hp = 50;
+    public int gold = 10000;
     public int enstr;
     public int endef;
     public int enspd;
@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     public bool silence = false;
     public bool curse = false;
 
+    #region 싱글톤 설정
     //게임매니저의 인스턴스를 담는 전역변수(static 변수이지만 이해하기 쉽게 전역변수라고 하겠다).
     //이 게임 내에서 게임매니저 인스턴스는 이 instance에 담긴 녀석만 존재하게 할 것이다.
     //보안을 위해 private으로.
@@ -65,6 +66,7 @@ public class GameManager : MonoBehaviour
             return instance;
         }
     }
+    #endregion
     public void cure()//모든 상태이상 치유
     {
         poison = false;
