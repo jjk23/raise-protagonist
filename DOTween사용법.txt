@@ -12,5 +12,6 @@ rt.doanchorposY(0,1)로 텍스트를 애니메이션처럼 슉 올리는거 가�
 
 뒤에 .setdelay(1.5f)로 딜레이를 주는것도 가능
 그 뒤에 .setease(ease.outelastic)으로 튕기는 효과 가능
+shopui.GetComponent<RectTransform>().DOAnchorPosY(0, 5).SetEase(Ease.OutElastic); 이렇게 하면 vector 0 으로 5초동안 이동.
 
 txt.dotext("어쩌구저쩌구",2,true,scramblemode.all)로 글자가 나올때 섞이면서 나옴

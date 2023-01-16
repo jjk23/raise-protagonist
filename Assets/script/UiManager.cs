@@ -14,6 +14,8 @@ public class UiManager : MonoBehaviour
     public AudioSource nosound;
     public AudioSource restsound;
     public AudioSource villagebgm;
+    public AudioSource shopin;
+    public AudioSource shopout;
     public AudioMixer mixer;
     public TextMeshProUGUI strt;
     public TextMeshProUGUI deft;
@@ -26,6 +28,7 @@ public class UiManager : MonoBehaviour
     public Slider hpslider;
     public GameObject restui;
     public GameObject setui;
+    public GameObject shopui;
     public Image black;    
     // Start is called before the first frame update
     void Start()
@@ -79,6 +82,16 @@ public class UiManager : MonoBehaviour
     {
         StartCoroutine("restco");
     }
+    public void clickshop()
+    {
+        shopin.Play();
+        shopui.GetComponent<RectTransform>().DOAnchorPosY(0, 2).SetEase(Ease.OutElastic);
+    }
+    public void shopexit()
+    {
+        shopout.Play();
+        shopui.transform.DOLocalMove(new Vector3(0, 1500, 0), 1);
+    }
     IEnumerator restco()
     {
         villagebgm.Pause();
@@ -98,6 +111,7 @@ public class UiManager : MonoBehaviour
     public void active(GameObject gm)
     {
         setui.transform.localPosition = new Vector3(0, 0, 0);//setui는 처음에 active상태로 있어야 소리 재생 가능 즉 active상태로 저 멀리 놨다가 원래 위치로 되돌리는 작업
+        setui.SetActive(false);
         oksound.Play();
         gm.SetActive(true);
         gm.transform.localScale = new Vector3(0,0,0);
