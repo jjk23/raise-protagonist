@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     public int endef;
     public int enspd;
     public int enhp;
+    public int potioncnt = 0;
+    public int curecnt = 0;
     public int dindex;//대화창 인덱스
     #region 인덱스 설명
     /*

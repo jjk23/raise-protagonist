@@ -10,6 +10,8 @@ using Michsky.MUIP;
 public class UiManager : MonoBehaviour
 {
     public int dinex = 0;
+    public int pcnt = 0;
+    public int ccnt = 0;
     public AudioSource oksound;
     public AudioSource nosound;
     public AudioSource restsound;
@@ -22,6 +24,10 @@ public class UiManager : MonoBehaviour
     public TextMeshProUGUI spdt;
     public TextMeshProUGUI goldt;
     public TextMeshProUGUI hpt;
+    public TextMeshProUGUI potiont;
+    public TextMeshProUGUI potiongold;
+    public TextMeshProUGUI curet;
+    public TextMeshProUGUI curegold;
     public RadialSlider mastervol;
     public RadialSlider bgmvol;
     public RadialSlider sevol;
@@ -71,8 +77,6 @@ public class UiManager : MonoBehaviour
         }
         #endregion
         hpslider.value = GameManager.Instance.hp;
-        Debug.Log("hp:"+GameManager.Instance.hp);
-        Debug.Log("gd:" + GameManager.Instance.gold);
     }
     public void clickblack()
     {    
@@ -82,8 +86,13 @@ public class UiManager : MonoBehaviour
     {
         StartCoroutine("restco");
     }
+    #region ªÛ¡° ui
     public void clickshop()
     {
+        pcnt = 0;
+        potiont.text = "0";
+        ccnt = 0;
+        curet.text= "0";
         shopin.Play();
         shopui.GetComponent<RectTransform>().DOAnchorPosY(0, 2).SetEase(Ease.OutElastic);
     }
@@ -92,6 +101,63 @@ public class UiManager : MonoBehaviour
         shopout.Play();
         shopui.transform.DOLocalMove(new Vector3(0, 1500, 0), 1);
     }
+    public void potionup()
+    {
+        if(5> GameManager.Instance.potioncnt+pcnt)
+        {
+            pcnt += 1;
+            potiont.text = "" + pcnt;
+            potiongold.text = "" + pcnt * 100;
+            oksound.Play();
+        }
+        else
+        {
+            nosound.Play();
+        }
+    }
+    public void potiondown()
+    {
+        if(pcnt>0)
+        {
+            pcnt -= 1;
+            potiont.text = "" + pcnt;
+            potiongold.text = "" + pcnt * 100;
+            oksound.Play();
+        }
+        else
+        {
+            nosound.Play();
+        }
+    }
+    public void cureup()
+    {
+        if (5 > GameManager.Instance.curecnt + ccnt)
+        {
+            ccnt += 1;
+            curet.text = "" + ccnt;
+            curegold.text = "" + ccnt * 100;
+            oksound.Play();
+        }
+        else
+        {
+            nosound.Play();
+        }
+    }
+    public void curedown()
+    {
+        if (ccnt > 0)
+        {
+            ccnt -= 1;
+            curet.text = "" + ccnt;
+            curegold.text = "" + ccnt * 100;
+            oksound.Play();
+        }
+        else
+        {
+            nosound.Play();
+        }
+    }
+    #endregion
     IEnumerator restco()
     {
         villagebgm.Pause();
