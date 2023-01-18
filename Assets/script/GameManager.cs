@@ -28,6 +28,10 @@ public class GameManager : MonoBehaviour
     public bool blood = false;
     public bool silence = false;
     public bool curse = false;
+    public string skill1;
+    public string skill2;
+    public string skill3;  
+    public string skill4;
 
     #region 싱글톤 설정
     //게임매니저의 인스턴스를 담는 전역변수(static 변수이지만 이해하기 쉽게 전역변수라고 하겠다).
