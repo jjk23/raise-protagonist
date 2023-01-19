@@ -33,6 +33,81 @@ public class SkillExplain : MonoBehaviour
         skillname.text = name;
         skillexplain.text = ex;
     }
+    public void skillfind(string s)
+    {
+        switch (s)
+        {
+            case "잠금":
+                set("스킬이 존재하지 않습니다!", "상점이나 레벨업을 통해 스킬을 추가하세요!");
+                break;
+            case "참격":
+                slash();
+                break;
+            case "단전호흡":
+                break;
+            case "힘줄끊기":
+                break;
+            case "암습":
+                break;
+            case "튕겨내기":
+                break;
+            case "천사의치유":
+                break;
+            case "일점찌르기":
+                break;
+            case "버서커":
+                break;
+            case "어쎄신무브":
+                break;
+            case "여정의 검":
+                break;
+            case "급소찌르기":
+                critical();
+                break;
+            case "엄니부수기":
+                breakteeth();
+                break;
+            case "화염의검":
+                firesword();
+                break;
+            case "분노":
+                rage();
+                break;
+            case "진압":
+                shutdown();
+                break;
+            case "제비반환":
+                swallowslash();
+                break;
+            case "글라디우스":
+                gladius();
+                break;
+            case "약육강식":
+                sotf();
+                break;
+            case "인페르노":
+                inferno();
+                break;
+        }
+
+    }
+    public void skill1ex()
+    {
+        skillfind(GameManager.Instance.skill1);
+    }
+    public void skill2ex()
+    {
+        skillfind(GameManager.Instance.skill2);
+    }
+    public void skill3ex()
+    {
+        skillfind(GameManager.Instance.skill3);
+    }
+    public void skill4ex()
+    {
+        skillfind(GameManager.Instance.skill4);
+    }
+    #region 스킬설명
     public void critical()
     {
         set("급소찌르기", "적의 급소를 찔러 데미지를 줍니다.\ntp:20/데미지:10\n인간에겐 2배의 피해를 줍니다.");
@@ -81,4 +156,5 @@ public class SkillExplain : MonoBehaviour
     {
         set("참격", "적을 단칼에 베어버립니다.\ntp:10/데미지:20");
     }
+    #endregion
 }
