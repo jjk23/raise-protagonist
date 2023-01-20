@@ -204,6 +204,18 @@ public class UiManager : MonoBehaviour
         }
         else
         {
+            if(gold == 100)
+            {
+                GameObject.Find("skillmanager").GetComponent<SkillManager>().color = "<color=#374B5F>";
+            }
+            else if (gold == 500)
+            {
+                GameObject.Find("skillmanager").GetComponent<SkillManager>().color = "<color=#0077FF>";
+            }
+            else if (gold == 700)
+            {
+                GameObject.Find("skillmanager").GetComponent<SkillManager>().color = "<color=#BC00FF>";
+            }
             shopin.Play();
             shopui.SetActive(false);
             GameManager.Instance.gold -= gold;
