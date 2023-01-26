@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.Audio;
 using TMPro;
 using DG.Tweening;
-using Michsky.MUIP;
+using Michsky.MUIP;//모던 ui에셋 헤더파일
 
 public class UiManager : MonoBehaviour
 {
@@ -25,11 +25,11 @@ public class UiManager : MonoBehaviour
     public TextMeshProUGUI spdt;
     public TextMeshProUGUI goldt;
     public TextMeshProUGUI hpt;
-    public TextMeshProUGUI potiont;
+    public TextMeshProUGUI potiont;//상점 포션개수 텍스트
     public TextMeshProUGUI potiongold;
-    public TextMeshProUGUI curet;
+    public TextMeshProUGUI curet;//상점 만병통치약 개수 텍스트
     public TextMeshProUGUI curegold;
-    public TextMeshProUGUI newskilltext;
+    public TextMeshProUGUI newskilltext;    
     public RadialSlider mastervol;
     public RadialSlider bgmvol;
     public RadialSlider sevol;
@@ -40,6 +40,7 @@ public class UiManager : MonoBehaviour
     public GameObject skillui;
     public GameObject getskillui;
     public GameObject[] skills = new GameObject[4];
+    public GameObject[] bags = new GameObject[6];
     public Image black;    
     // Start is called before the first frame update
     void Start()
@@ -54,7 +55,7 @@ public class UiManager : MonoBehaviour
         deft.text = "인내: " + GameManager.Instance.def;
         spdt.text = "민첩: " + GameManager.Instance.spd;
         goldt.text = "소지금: " + GameManager.Instance.gold;
-        hpt.text = ""+GameManager.Instance.hp;
+        hpt.text = ""+GameManager.Instance.hp;        
         #region 볼륨조절
         if (mastervol.SliderValue==0)
         {
@@ -83,14 +84,34 @@ public class UiManager : MonoBehaviour
         #endregion
         hpslider.value = GameManager.Instance.hp;
     }
+    #region 암시장 ui
     public void clickblack()
     {    
         GameManager.Instance.dindex = 0;
     }
+    #endregion
+    #region 여관 ui
     public void clickrest()
     {
         StartCoroutine("restco");
     }
+    IEnumerator restco()
+    {
+        villagebgm.Pause();
+        black.gameObject.SetActive(true);
+        restsound.Play();
+        cancel(restui);
+        black.DOFade(1, 4f);
+        yield return new WaitForSeconds(5);
+        black.DOFade(0, 3f);
+        yield return new WaitForSeconds(3);
+        black.gameObject.SetActive(false);
+        GameManager.Instance.gold -= 50;
+        GameManager.Instance.hp = 300;
+        GameManager.Instance.cure();
+        villagebgm.Play();
+    }
+    #endregion
     #region 상점 ui
     public void clickshop()
     {
@@ -108,7 +129,7 @@ public class UiManager : MonoBehaviour
     }
     public void potionup()
     {
-        if(5> GameManager.Instance.potioncnt+pcnt)
+        if(5> GameManager.Instance.potioncnt+pcnt && GameManager.Instance.gold >= (pcnt+1) * 100)
         {
             pcnt += 1;
             potiont.text = "" + pcnt;
@@ -134,9 +155,21 @@ public class UiManager : MonoBehaviour
             nosound.Play();
         }
     }
+    public void buypotion()
+    {
+        ccnt = 0;
+        curet.text = "" + ccnt;
+        curegold.text = "" + ccnt * 100;
+        shopin.Play();
+        GameManager.Instance.potioncnt = pcnt;
+        GameManager.Instance.gold -= pcnt * 100;
+        pcnt = 0;
+        potiont.text = "" + pcnt;
+        potiongold.text = "" + pcnt * 100;
+    }
     public void cureup()
     {
-        if (5 > GameManager.Instance.curecnt + ccnt)
+        if (5 > GameManager.Instance.curecnt + ccnt&&GameManager.Instance.gold>=(ccnt+1)*100)
         {
             ccnt += 1;
             curet.text = "" + ccnt;
@@ -161,6 +194,18 @@ public class UiManager : MonoBehaviour
         {
             nosound.Play();
         }
+    }
+    public void buycure()
+    {
+        pcnt = 0;
+        potiont.text = "" + pcnt;
+        potiongold.text = "" + pcnt * 100;
+        shopin.Play();
+        GameManager.Instance.curecnt= ccnt;
+        GameManager.Instance.gold -= ccnt * 100;
+        ccnt = 0;
+        curet.text = "" + ccnt;
+        curegold.text = "" + ccnt * 100;
     }
     public void buyskill(string name)
     {
@@ -196,6 +241,7 @@ public class UiManager : MonoBehaviour
         }
     }
     #endregion
+    #region 스킬 ui
     void setnewskill(int gold,string skillname)//편의성 함수
     {
         if (GameManager.Instance.gold < gold)
@@ -248,22 +294,48 @@ public class UiManager : MonoBehaviour
         ticksound.Play();
         skills[3].transform.DOLocalMove(new Vector3(-206.6f, -200, 0), 0.5f);
     }
-    IEnumerator restco()
+    #endregion
+    #region 가방 ui
+    public void clickbag()
     {
-        villagebgm.Pause();
-        black.gameObject.SetActive(true);
-        restsound.Play();
-        cancel(restui);
-        black.DOFade(1, 4f);
-        yield return new WaitForSeconds(5);
-        black.DOFade(0, 3f);
-        yield return new WaitForSeconds(3);
-        black.gameObject.SetActive(false);
-        GameManager.Instance.gold -= 50;
-        GameManager.Instance.hp = 300;
-        GameManager.Instance.cure();
-        villagebgm.Play();
+        StartCoroutine("bagco");
     }
+    IEnumerator bagco()
+    {
+        for(int i=0;i<3;i++)
+        {
+            bags[i].transform.DOMoveY(0, 0.5f);
+            ticksound.Play();
+            yield return new WaitForSeconds(0.2f);
+        }
+        bags[3].transform.DOMoveY(1.5f, 0.5f);
+        ticksound.Play();
+        yield return new WaitForSeconds(0.2f);
+        bags[4].transform.DOMoveY(-1f, 0.5f);
+        ticksound.Play();
+        bags[5].transform.DOMoveY(0, 0.5f);
+    }
+    public void cancelbag()
+    {
+        StartCoroutine("cbagco");
+    }
+    IEnumerator cbagco()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            bags[i].transform.DOMoveY(-12, 0.5f);
+            ticksound.Play();
+            yield return new WaitForSeconds(0.2f);
+        }
+        bags[4].transform.DOMoveY(-10, 0.5f);
+        ticksound.Play();
+        yield return new WaitForSeconds(0.2f);
+        bags[3].transform.DOMoveY(-13, 0.5f);
+        ticksound.Play();
+        bags[5].transform.DOMoveY(-16, 0.5f);
+    }
+    #endregion
+    #region 편의성 함수
     public void active(GameObject gm)
     {
         setui.transform.localPosition = new Vector3(0, 0, 0);//setui는 처음에 active상태로 있어야 소리 재생 가능 즉 active상태로 저 멀리 놨다가 원래 위치로 되돌리는 작업
@@ -278,4 +350,5 @@ public class UiManager : MonoBehaviour
         nosound.Play();
         gm.SetActive(false);
     }
+    #endregion
 }
