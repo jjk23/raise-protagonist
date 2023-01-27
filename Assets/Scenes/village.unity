@@ -556,7 +556,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -466.7, y: -91}
+  m_AnchoredPosition: {x: -466.7, y: -82.99994}
   m_SizeDelta: {x: 726, y: -40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &18351263
@@ -607,8 +607,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1419,7 +1419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5707547, g: 0.6404002, b: 1, a: 1}
+  m_Color: {r: 0.57254905, g: 0.6392157, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2344,7 +2344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.41509432, g: 0.41509432, b: 0.41509432, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2460,6 +2460,18 @@ MonoBehaviour:
   - {fileID: 449481794}
   - {fileID: 214140743}
   iconsprites:
+  - {fileID: 21300000, guid: 8ee44757ae0227f41bf7a442a527fac6, type: 3}
+  - {fileID: 21300000, guid: 3d139fd6bd78ebf4eb6796785c85910d, type: 3}
+  - {fileID: 21300000, guid: 56ea44dfaaeccf64e84e105a00cd22eb, type: 3}
+  - {fileID: 21300000, guid: d6b10d0fbc973364b987d2d5c3ceb51c, type: 3}
+  - {fileID: 21300000, guid: c05a4f5cbcb8b57419f3b661c35b4fb6, type: 3}
+  - {fileID: 21300000, guid: 3f09bbb57765df347a99e2d0ca6353f6, type: 3}
+  - {fileID: 21300000, guid: 0c3ac0eaf7db1c64ba997118b45f79de, type: 3}
+  - {fileID: 21300000, guid: d936b84f3f2c3ca4cabfe32d4e3fdc20, type: 3}
+  - {fileID: 21300000, guid: 6fc89d1c9c1336848926bd670a709a3f, type: 3}
+  - {fileID: 21300000, guid: 6594678556d40d244b0ec0111325646f, type: 3}
+  - {fileID: 21300000, guid: 68b1ab8c259b15c43a3d17e81233a0cc, type: 3}
+  - {fileID: 21300000, guid: a8ab32d70dd35ae40a7912fcc2dee45e, type: 3}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -2498,19 +2510,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  itemname:
+  itemnames:
   - {fileID: 2121014805}
   - {fileID: 376469426}
   - {fileID: 454962364}
@@ -2520,6 +2520,7 @@ MonoBehaviour:
   - {fileID: 18351263}
   pcnttext: {fileID: 966992815}
   ccnttext: {fileID: 27155303}
+  color: 
 --- !u!224 &56326678
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3275,8 +3276,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4284435255
-  m_fontColor: {r: 0.21568628, g: 0.29411766, b: 0.37254903, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4203,7 +4204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.41509432, g: 0.41509432, b: 0.41509432, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -22021,7 +22022,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 209348373}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1750629911}
+        m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
+        m_MethodName: buyitem
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: "\uCCA0\uAC80"
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &209348373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22865,8 +22878,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4284435255
-  m_fontColor: {r: 0.21568628, g: 0.29411766, b: 0.37254903, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -24413,7 +24426,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.1764706, g: 0.25490198, b: 0.33333334, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -24983,7 +24996,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 343085097}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1750629911}
+        m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
+        m_MethodName: buyitem
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: "\uD32C\uB358\uD2B8"
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &343085097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25191,8 +25216,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -620, y: 66}
-  m_SizeDelta: {x: 200, y: -40}
+  m_AnchoredPosition: {x: -541, y: 66}
+  m_SizeDelta: {x: 178, y: -40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &376469426
 MonoBehaviour:
@@ -25277,7 +25302,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 15.441635, w: 0}
+  m_margin: {x: -152.97868, y: 0, z: 15.441635, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -27472,8 +27497,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -620, y: 66}
-  m_SizeDelta: {x: 200, y: -40}
+  m_AnchoredPosition: {x: -532.7, y: 66}
+  m_SizeDelta: {x: 194.59998, y: -40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &454962364
 MonoBehaviour:
@@ -27558,7 +27583,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 15.441635, w: 0}
+  m_margin: {x: -161.47754, y: 0, z: 15.441635, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -28480,8 +28505,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4284435255
-  m_fontColor: {r: 0.21568628, g: 0.29411766, b: 0.37254903, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -29171,7 +29196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.41509432, g: 0.41509432, b: 0.41509432, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -32252,7 +32277,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -466.7, y: -91}
+  m_AnchoredPosition: {x: -466.7, y: -82.99994}
   m_SizeDelta: {x: 726, y: -40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &615111072
@@ -32303,8 +32328,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -32558,7 +32583,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.1764706, g: 0.25490198, b: 0.33333334, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -33918,7 +33943,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -466.7, y: -91}
+  m_AnchoredPosition: {x: -466.7, y: -83}
   m_SizeDelta: {x: 726, y: -40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &700763908
@@ -33969,8 +33994,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -34760,7 +34785,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.1764706, g: 0.25490198, b: 0.33333334, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -34852,8 +34877,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4284435255
-  m_fontColor: {r: 0.21568628, g: 0.29411766, b: 0.37254903, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -36325,7 +36350,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 795510301}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1750629911}
+        m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
+        m_MethodName: buyitem
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: "\uBC18\uC9C0"
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &795510301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39161,7 +39198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.41509432, g: 0.41509432, b: 0.41509432, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -40022,7 +40059,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 966791869}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1750629911}
+        m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
+        m_MethodName: buyitem
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: "\uBAA9\uAC78\uC774"
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &966791869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40402,7 +40451,7 @@ GameObject:
   - component: {fileID: 976298034}
   m_Layer: 5
   m_Name: skillUI
-  m_TagString: Untagged
+  m_TagString: skillui
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42911,7 +42960,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1105184027}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1750629911}
+        m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
+        m_MethodName: buyitem
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: "\uBC14\uC2A4\uD0C0\uB4DC\uC18C\uB4DC"
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1105184027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45037,7 +45098,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1196635991}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1750629911}
+        m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
+        m_MethodName: buyitem
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: "\uBAA9\uC81C\uAC11\uC637"
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1196635991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45661,7 +45734,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1215073664}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1750629911}
+        m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
+        m_MethodName: buyitem
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: "\uC5F4\uC1E0"
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1215073664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47864,7 +47949,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1309158125}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1750629911}
+        m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
+        m_MethodName: buyitem
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: "\uB0A1\uC740\uAC80"
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1309158125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50546,7 +50643,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1439807670}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1750629911}
+        m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
+        m_MethodName: buyitem
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: "\uCC9C\uAC11\uC637"
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1439807670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51772,7 +51881,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1471181783}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1750629911}
+        m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
+        m_MethodName: buyitem
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: "\uB2E4\uC774\uC544\uC18C\uB4DC"
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1471181783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54148,7 +54269,7 @@ GameObject:
   - component: {fileID: 1559268943}
   m_Layer: 5
   m_Name: Cancel
-  m_TagString: Untagged
+  m_TagString: addskill
   m_Icon: {fileID: 2800000, guid: 98d001ce6b3b53242911dcc3d1415f59, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -59633,6 +59754,7 @@ MonoBehaviour:
   blood: 0
   silence: 0
   curse: 0
+  key: 0
   skill1: "\uCC38\uACA9"
   skill2: "\uC7A0\uAE08"
   skill3: "\uC7A0\uAE08"
@@ -59695,6 +59817,7 @@ MonoBehaviour:
   - {fileID: 1944343615}
   - {fileID: 438655979}
   black: {fileID: 1919457726}
+  bansprite: {fileID: 21300000, guid: b95971b39ca423d46a4b746f4060f6ae, type: 3}
 --- !u!224 &1750629913
 RectTransform:
   m_ObjectHideFlags: 0
@@ -63034,7 +63157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.1764706, g: 0.25490198, b: 0.33333334, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -64790,7 +64913,7 @@ GameObject:
   - component: {fileID: 1901282940}
   - component: {fileID: 1901282939}
   m_Layer: 5
-  m_Name: Button
+  m_Name: cancel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -69053,7 +69176,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2094540037}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1750629911}
+        m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
+        m_MethodName: buyitem
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: "\uCCA0\uAC11\uC637"
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2094540037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69355,7 +69490,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2103577715}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1750629911}
+        m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
+        m_MethodName: buyitem
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: "\uD669\uAD81\uAC11\uC637"
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2103577715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69505,8 +69652,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -620, y: 66}
-  m_SizeDelta: {x: 200, y: -40}
+  m_AnchoredPosition: {x: -621.5, y: 66}
+  m_SizeDelta: {x: 17, y: -40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2121014805
 MonoBehaviour:
@@ -69591,7 +69738,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 15.441635, w: 0}
+  m_margin: {x: -165.04349, y: 0, z: -161.33368, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

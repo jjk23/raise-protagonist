@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     public bool blood = false;
     public bool silence = false;
     public bool curse = false;
+    public bool key = false;
     public string skill1;
     public string skill2;
     public string skill3;  

@@ -6,6 +6,7 @@ using UnityEngine.Audio;
 using TMPro;
 using DG.Tweening;
 using Michsky.MUIP;//모던 ui에셋 헤더파일
+using UnityEngine.EventSystems;
 
 public class UiManager : MonoBehaviour
 {
@@ -41,7 +42,8 @@ public class UiManager : MonoBehaviour
     public GameObject getskillui;
     public GameObject[] skills = new GameObject[4];
     public GameObject[] bags = new GameObject[6];
-    public Image black;    
+    public Image black;
+    public Sprite bansprite;
     // Start is called before the first frame update
     void Start()
     {
@@ -212,7 +214,7 @@ public class UiManager : MonoBehaviour
         switch (name)
         {
             case "급소찌르기":
-                setnewskill(100, name);
+                setnewskill(100, name);               
                 break;
             case "엄니부수기":
                 setnewskill(100, name);
@@ -240,37 +242,51 @@ public class UiManager : MonoBehaviour
                 break;
         }
     }
+    public void buyitem(string name)
+    {
+        switch (name)
+        {
+            case "천갑옷":
+                setnewitem(100, name, 1);
+                break;
+            case "목제갑옷":
+                setnewitem(200, name, 1);
+                break;
+            case "철갑옷":
+                setnewitem(500, name, 1);
+                break;
+            case "황궁갑옷":
+                setnewitem(1000, name, 1);
+                break;
+            case "낡은검":
+                setnewitem(100, name, 0);
+                break;
+            case "철검":
+                setnewitem(200, name, 0);
+                break;
+            case "바스타드소드":
+                setnewitem(500, name, 0);
+                break;
+            case "다이아소드":
+                setnewitem(1000, name, 0);
+                break;
+            case "목걸이":
+                setnewitem(300, name, 2);
+                break;
+            case "팬던트":
+                setnewitem(300, name, 2);
+                break;
+            case "반지":
+                setnewitem(300, name, 2);
+                break;
+            case "열쇠":
+                setnewitem(500, name, 2);
+                break;
+        }
+    }
     #endregion
     #region 스킬 ui
-    void setnewskill(int gold,string skillname)//편의성 함수
-    {
-        if (GameManager.Instance.gold < gold)
-        {
-            nosound.Play();
-        }
-        else
-        {
-            if(gold == 100)
-            {
-                GameObject.Find("skillmanager").GetComponent<SkillManager>().color = "<color=#374B5F>";
-            }
-            else if (gold == 500)
-            {
-                GameObject.Find("skillmanager").GetComponent<SkillManager>().color = "<color=#0077FF>";
-            }
-            else if (gold == 700)
-            {
-                GameObject.Find("skillmanager").GetComponent<SkillManager>().color = "<color=#BC00FF>";
-            }
-            shopin.Play();
-            shopui.SetActive(false);
-            GameManager.Instance.gold -= gold;
-            GameObject.Find("skillmanager").GetComponent<SkillManager>().skillname = skillname;
-            active(getskillui);
-            newskilltext.text = "당신은 새로운 스킬 " + skillname + "을(를) \n습득하였습니다!";
-            clickskill();
-        }       
-    }
+    
     public void clickskill()
     {
         skillui.SetActive(true);
@@ -300,7 +316,7 @@ public class UiManager : MonoBehaviour
     {
         StartCoroutine("bagco");
     }
-    IEnumerator bagco()
+    IEnumerator bagco()//가방 열때 코루틴
     {
         for(int i=0;i<3;i++)
         {
@@ -319,7 +335,7 @@ public class UiManager : MonoBehaviour
     {
         StartCoroutine("cbagco");
     }
-    IEnumerator cbagco()
+    IEnumerator cbagco()//가방 닫을때 코루틴
     {
         for (int i = 0; i < 3; i++)
         {
@@ -347,8 +363,94 @@ public class UiManager : MonoBehaviour
     }
     public void cancel(GameObject gm)//해당 게임오브젝트를 비활성화
     {
-        nosound.Play();
-        gm.SetActive(false);
+        if(gm.tag=="skillui"&&getskillui.activeSelf)
+        {
+            Debug.Log(EventSystem.current.currentSelectedGameObject.name);
+            if (EventSystem.current.currentSelectedGameObject.tag == "addskill")
+            {
+                Debug.Log("as");
+                shopui.SetActive(true);
+                nosound.Play();
+                gm.SetActive(false);
+            }
+        }
+        else
+        {
+            nosound.Play();
+            gm.SetActive(false);
+        }       
+    }
+    void setnewskill(int gold, string skillname)//편의성 함수
+    {
+        if (GameManager.Instance.gold < gold||EventSystem.current.currentSelectedGameObject.tag=="ban")
+        {
+            nosound.Play();
+        }
+        else
+        {
+            EventSystem.current.currentSelectedGameObject.GetComponent<Image>().sprite = bansprite;
+            EventSystem.current.currentSelectedGameObject.tag = "ban";
+            if (gold == 100)
+            {
+                GameObject.Find("skillmanager").GetComponent<SkillManager>().color = "<color=#95FF00>";
+            }
+            else if (gold == 500)
+            {
+                GameObject.Find("skillmanager").GetComponent<SkillManager>().color = "<color=#0077FF>";
+            }
+            else if (gold == 700)
+            {
+                GameObject.Find("skillmanager").GetComponent<SkillManager>().color = "<color=#BC00FF>";
+            }
+            shopin.Play();
+            shopui.SetActive(false);
+            GameManager.Instance.gold -= gold;
+            GameObject.Find("skillmanager").GetComponent<SkillManager>().skillname = skillname;
+            active(getskillui);
+            newskilltext.text = "당신은 새로운 스킬 " + skillname + "을(를) \n습득하였습니다!";
+            clickskill();
+        }
+    }
+    void setnewitem(int gold,string Itemname,int index)//index로 무기인지 방어구인지 악세사리인지 구분
+    {
+        if (GameManager.Instance.gold < gold)
+        {
+            nosound.Play();
+        }
+        else
+        {
+            if(gold==100)
+            {
+                GameObject.Find("itemmanager").GetComponent<ItemManager>().color = "<color=#FFFFFF>";
+            }
+            else if (gold == 200||gold==300)
+            {
+                GameObject.Find("itemmanager").GetComponent<ItemManager>().color = "<color=#95FF00>";
+            }
+            else if (gold == 500)
+            {
+                GameObject.Find("itemmanager").GetComponent<ItemManager>().color = "<color=#0077FF>";
+            }
+            else if (gold == 1000)
+            {
+                GameObject.Find("itemmanager").GetComponent<ItemManager>().color = "<color=#BC00FF>";
+            }
+            shopin.Play();
+            GameManager.Instance.gold -= gold;
+            if(index==0)//기존에 있던 아이템 제거하는 과정
+            {
+                GameObject.Find("itemmanager").GetComponent<ItemManager>().setitem(GameManager.Instance.weapon, false);
+            }
+            if(index==1)
+            {
+                GameObject.Find("itemmanager").GetComponent<ItemManager>().setitem(GameManager.Instance.armer, false);
+            }
+            if(index==2)
+            {
+                GameObject.Find("itemmanager").GetComponent<ItemManager>().setitem(GameManager.Instance.accessory, false);
+            }            
+            GameObject.Find("itemmanager").GetComponent<ItemManager>().setitem(Itemname, true);
+        }
     }
     #endregion
 }

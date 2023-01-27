@@ -52,3 +52,7 @@ mixer.SetFloat("Master",볼륨값); 이런 식으로 믹서의 볼륨을 조정 
 public으로 선언한 변수는 초기화할때 유니티 내부에서 값을 직접 입력해서 초기화해야 한다
 스크립트에서 선언과 동시에 초기화해주면 값이 제대로 수정이 안된다;
 혹은 start에서 수정하면 됨.(awake는 안되더라)
+
+버튼을 눌러서 함수가 실행된 그 버튼 오브젝트를 가져오려면
+using unityengine.eventsystems를 하고
+EventSystem.current.currentSelectedGameObject로 
