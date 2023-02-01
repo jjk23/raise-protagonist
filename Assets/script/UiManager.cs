@@ -26,11 +26,13 @@ public class UiManager : MonoBehaviour
     public TextMeshProUGUI spdt;
     public TextMeshProUGUI goldt;
     public TextMeshProUGUI hpt;
+    public TextMeshProUGUI levelt;
     public TextMeshProUGUI potiont;//상점 포션개수 텍스트
     public TextMeshProUGUI potiongold;
     public TextMeshProUGUI curet;//상점 만병통치약 개수 텍스트
     public TextMeshProUGUI curegold;
-    public TextMeshProUGUI newskilltext;    
+    public TextMeshProUGUI newskilltext;
+    public TextMeshProUGUI dayt;//날짜 텍스트
     public RadialSlider mastervol;
     public RadialSlider bgmvol;
     public RadialSlider sevol;
@@ -40,6 +42,7 @@ public class UiManager : MonoBehaviour
     public GameObject shopui;
     public GameObject skillui;
     public GameObject getskillui;
+    public GameObject passiveui;
     public GameObject[] skills = new GameObject[4];
     public GameObject[] bags = new GameObject[6];
     public Image black;
@@ -57,7 +60,9 @@ public class UiManager : MonoBehaviour
         deft.text = "인내: " + GameManager.Instance.def;
         spdt.text = "민첩: " + GameManager.Instance.spd;
         goldt.text = "소지금: " + GameManager.Instance.gold;
-        hpt.text = ""+GameManager.Instance.hp;        
+        hpt.text = ""+GameManager.Instance.hp;
+        levelt.text = "LV: " + GameManager.Instance.level;
+        dayt.text = "DAY: " + GameManager.Instance.day;
         #region 볼륨조절
         if (mastervol.SliderValue==0)
         {
@@ -351,6 +356,21 @@ public class UiManager : MonoBehaviour
         bags[5].transform.DOMoveY(-16, 0.5f);
     }
     #endregion
+    #region 패시브 ui
+    public void clickpassive()
+    {
+        if(passiveui.transform.localRotation.z==1)
+        {
+            ticksound.Play();
+            passiveui.transform.DORotate(new Vector3(0, 0, 0), 0.2f);
+        }
+        else if(passiveui.transform.localRotation.z == 0)
+        {
+            shopout.Play();
+            passiveui.transform.DORotate(new Vector3(0, 0, 180), 2f);
+        }
+    }
+    #endregion
     #region 편의성 함수
     public void active(GameObject gm)
     {
@@ -363,22 +383,14 @@ public class UiManager : MonoBehaviour
     }
     public void cancel(GameObject gm)//해당 게임오브젝트를 비활성화
     {
-        if(gm.tag=="skillui"&&getskillui.activeSelf)
-        {
-            Debug.Log(EventSystem.current.currentSelectedGameObject.name);
-            if (EventSystem.current.currentSelectedGameObject.tag == "addskill")
-            {
-                Debug.Log("as");
-                shopui.SetActive(true);
-                nosound.Play();
-                gm.SetActive(false);
-            }
-        }
-        else
-        {
-            nosound.Play();
-            gm.SetActive(false);
-        }       
+        nosound.Play();
+        gm.SetActive(false);
+    }
+    public void getskillcancel(GameObject gm)//get skillui 스킬 안배울때 사용
+    {
+        shopui.SetActive(true);
+        nosound.Play();
+        gm.SetActive(false);
     }
     void setnewskill(int gold, string skillname)//편의성 함수
     {

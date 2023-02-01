@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public int level = 1;
     public int str = 5;
     public int def = 5;
     public int spd = 5;
     public int hp = 50;
     public int gold = 10000;
+    public int day = 1;
     public int enstr;//»ó´ë ½ºÅÈµé
     public int endef;
     public int enspd;

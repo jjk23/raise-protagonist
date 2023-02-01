@@ -56,3 +56,4 @@ public으로 선언한 변수는 초기화할때 유니티 내부에서 값을 �
 버튼을 눌러서 함수가 실행된 그 버튼 오브젝트를 가져오려면
 using unityengine.eventsystems를 하고
 EventSystem.current.currentSelectedGameObject로 
+단, 일반적인 버튼에만 적용. modern ui는 해당안됨

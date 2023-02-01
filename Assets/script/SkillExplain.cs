@@ -156,5 +156,9 @@ public class SkillExplain : MonoBehaviour
     {
         set("참격(D랭크)", "적을 단칼에 베어버립니다.\ntp:10/데미지:20");
     }
+    public void key()
+    {
+        set("열쇠", "적을 처치했을때 얻는 골드량이 20%증가합니다.");
+    }
     #endregion
 }
