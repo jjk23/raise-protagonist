@@ -10,6 +10,8 @@ https://soundeffect-lab.info/
 3.핸드폰 연결 후 소프트웨어 정보 7번 연속터치 이후 개발자 모드 들어가서 usb디버깅 on해줌
 이러면 핸드폰으로 구동 가능
 참고로 빌드세팅->플레이어세팅->방향->가로 왼쪽으로 해야 게임 회전되서 잘 나옴
+testapp.apk를 컴퓨터에 만들고 그걸 휴대폰에 전송->testapp.apk를 실행하면 게임이 깔림.
+버그로 핸드폰 인식 못하면 usb디버깅모드 껐다가 재실행 ㄱㄱ
 
 앵커:UI요소의 원점을 설정.
 가로 세로 0~1까지가 양 끝단이다. 예를들어 0,0은 왼쪽아래 1,1은 오른쪽위. 0.5 0.5는 가운데
@@ -57,3 +59,18 @@ public으로 선언한 변수는 초기화할때 유니티 내부에서 값을 �
 using unityengine.eventsystems를 하고
 EventSystem.current.currentSelectedGameObject로 
 단, 일반적인 버튼에만 적용. modern ui는 해당안됨
+
+---------------------------------------------------------------------------------------------------
+유니티에서 rotation값을 변경하려면 new vector3로는 변경이 불가능하다.
+유니티에선 쿼터니언으로 rotation을 제어하기 때문.
+따라서 transform.rotation=Quaternion.Euler(new vector3())로 설정해주자.
+반대로 쿼터니언을 오일러값으로 출력하고 싶다면
+gm.transform.eulerAngles을 해주면 된다.
+간혹 eulerAngles.z 같이 값을 받아왔을때 1.4124512012e같이 이상한 값이 출력되는 경우가 있는데 
+이는 유니티의 부동소수점 오류이다. mathf.round로 반올림을 해주면 깔끔하게 0이 나옴.
+-----------------------------------------------------------------------------------------------------
+유니티 debug.log를 할때
+Debug' is an ambiguous reference between 'UnityEngine.Debug' and 'System.Diagnostics.Debug'
+같이 에러가 뜰 때가 있는데 
+이는 unityengine의 debug를 쓸지 diagnostics의 debug를 쓸지 헷갈려서 일어나는 문제.
+using System.Diagnostics; 를 지우거나 UnityEngine.Debug.Log 를 사용하면댐

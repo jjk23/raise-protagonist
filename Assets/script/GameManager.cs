@@ -31,6 +31,21 @@ public class GameManager : MonoBehaviour
     public bool silence = false;
     public bool curse = false;
     public bool key = false;
+    #region 패시브 모음
+    public bool pberserk = false;
+    public bool pshielder = false;
+    public bool passassin = false;
+    public bool pbughunter = false;
+    public bool pbeasthunter = false;
+    public bool pdevilhunter = false;
+    public bool pvip = false;
+    public bool pnaturalheal = false;
+    public bool padrenalin = false;
+    public bool plegend = false;
+    public bool psageeye = false;
+    public bool pgrideye = false;
+    public bool praphael = false;
+    #endregion
     public string skill1;
     public string skill2;
     public string skill3;  

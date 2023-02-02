@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,21 +11,23 @@ public class SkillManager : MonoBehaviour
     public TextMeshProUGUI[] skilltext = new TextMeshProUGUI[4];    
     public Image[] skillicon = new Image[4];
     public Sprite[] iconsprites = new Sprite[50];
+    public GameObject[] passives = new GameObject[15];
+    public GameObject[] passivelock = new GameObject[15];
     // Start is called before the first frame update
     void Start()
     {
         DontDestroyOnLoad(gameObject);
+        skillname = null;
     }
 
     // Update is called once per frame
     void Update()
     {
         
-                       
     }
     public void Clickskill(int index)
     {
-        if(skillname!=null)//skillname은 uimanager에서 설정
+        if(skillname!=null)//skillname은 uimanager에서 설정. 스킬 습득가능한지 확인하는과정
         {
             switch (index)
             {
@@ -56,6 +57,86 @@ public class SkillManager : MonoBehaviour
             GameObject.Find("gamemanager").GetComponent<UiManager>().getskillui.SetActive(false);
             GameObject.Find("gamemanager").GetComponent<UiManager>().skillui.SetActive(false);
         }       
+    }
+    public void getpassive(string passivename)
+    {
+        switch (passivename)
+        {
+            case "광전사":
+                passives[0].SetActive(true);
+                passivelock[0].SetActive(false);
+                GameManager.Instance.pberserk = true;
+                break;
+            case "방패병":
+                passives[1].SetActive(true);
+                passivelock[1].SetActive(false);
+                GameManager.Instance.pshielder = true;
+                break;
+            case "어쎄신":
+                passives[2].SetActive(true);
+                passivelock[2].SetActive(false);
+                GameManager.Instance.passassin = true;
+                break;
+            case "챔피언":
+                passives[3].SetActive(true);
+                passivelock[3].SetActive(false);
+                break;
+            case "벌레학살자":
+                passives[4].SetActive(true);
+                passivelock[4].SetActive(false);
+                GameManager.Instance.pbughunter = true;
+                break;
+            case "도살자":
+                passives[5].SetActive(true);
+                passivelock[5].SetActive(false);
+                GameManager.Instance.pbeasthunter = true;
+                break;
+            case "악마사냥꾼":
+                passives[6].SetActive(true);
+                passivelock[6].SetActive(false);
+                GameManager.Instance.pdevilhunter = true;
+                break;
+            case "VIP":
+                passives[7].SetActive(true);
+                passivelock[7].SetActive(false);
+                GameManager.Instance.pvip = true;
+                break;
+            case "자연치유":
+                passives[8].SetActive(true);
+                passivelock[8].SetActive(false);
+                GameManager.Instance.pnaturalheal = true;
+                break;
+            case "아드레날린":
+                passives[9].SetActive(true);
+                passivelock[9].SetActive(false);
+                GameManager.Instance.padrenalin = true;
+                break;
+            case "전설":
+                passives[10].SetActive(true);
+                passivelock[10].SetActive(false);
+                GameManager.Instance.plegend = true;              
+                break;
+            case "현자의눈":
+                passives[11].SetActive(true);
+                passivelock[11].SetActive(false);
+                GameManager.Instance.psageeye = true;
+                break;
+            case "탐식의눈":
+                passives[12].SetActive(true);
+                passivelock[12].SetActive(false);
+                GameManager.Instance.pgrideye = true;
+                break;
+            case "라파엘의가호":
+                passives[13].SetActive(true);
+                passivelock[13].SetActive(false);
+                GameManager.Instance.praphael = true;
+                break;
+            case "디스펠":
+                passives[14].SetActive(true);
+                passivelock[14].SetActive(false);
+                break;
+        }
+
     }
     public void seticon(string skillname,Image icon)//아이콘 설정해주는 편의성 함수
     {

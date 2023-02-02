@@ -43,6 +43,7 @@ public class UiManager : MonoBehaviour
     public GameObject skillui;
     public GameObject getskillui;
     public GameObject passiveui;
+    public GameObject hidpassiveui;
     public GameObject[] skills = new GameObject[4];
     public GameObject[] bags = new GameObject[6];
     public Image black;
@@ -368,6 +369,19 @@ public class UiManager : MonoBehaviour
         {
             shopout.Play();
             passiveui.transform.DORotate(new Vector3(0, 0, 180), 2f);
+        }
+    }
+    public void clickhiddenpassive()
+    {
+        if (hidpassiveui.transform.localRotation.z == 1)
+        {
+            ticksound.Play();
+            hidpassiveui.transform.DORotate(new Vector3(0, 0, 0), 0.2f);
+        }
+        else if (hidpassiveui.transform.localRotation.z == 0)
+        {
+            shopout.Play();
+            hidpassiveui.transform.DORotate(new Vector3(0, 0, 180), 2f);
         }
     }
     #endregion

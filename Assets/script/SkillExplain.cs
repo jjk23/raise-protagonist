@@ -18,7 +18,7 @@ public class SkillExplain : MonoBehaviour
         else
         {
             explain.SetActive(false);
-        }
+        }       
     }
     public void pointerdown()
     {
@@ -159,6 +159,66 @@ public class SkillExplain : MonoBehaviour
     public void key()
     {
         set("열쇠", "적을 처치했을때 얻는 골드량이 20%증가합니다.");
+    }
+    public void berserk()
+    {
+        set("광전사", "체력이 50 낮아질때마다 힘이 10 상승합니다.");
+    }
+    public void shielder()
+    {
+        set("방패병", "상대의 공격을 완벽히 방어하면\n(상대의 공격보다 내 인내가 더 높으면)\n상대에게 그 공격의 10%만큼 피해를 줍니다.");
+    }
+    public void assassin()
+    {
+        set("어쎄신", "민첩에 비례해서 회피확률과 치명타확률이 상승합니다.\n(회피는 10당 5%. 치명타는 10당 10%)");
+    }
+    public void champion()
+    {
+        set("챔피언", "모든 스탯이 5 상승합니다.");
+    }
+    public void bughunter()
+    {
+        set("벌레 학살자", "독,마비,실명에 대해 면역이 됩니다.");
+    }
+    public void beasthunter()
+    {
+        set("도살자", "체력이 50%이하인 적에게 20%추가 피해를 줍니다.");
+    }
+    public void devilhunter()
+    {
+        set("악마 사냥꾼", "<마계>에서의 모든 스탯이 7 상승합니다.");
+    }
+    public void vip()
+    {
+        set("V.I.P", "<암시장>을 이용할 수 있습니다.");
+    }
+    public void natrualheal()
+    {
+        set("자연치유", "매 전투가 끝날때마다 체력을 50회복합니다.");
+    }
+    public void adrenalin()
+    {
+        set("아드레날린", "죽음에 이르는 피해를 받으면 1회 체력을 50회복합니다.\n<미사용>");
+    }
+    public void legend()
+    {
+        set("전설", "적의 공격으로 받는 모든 피해가 20%감소합니다.\n이후 받는 5이하의 피해는 무시합니다.");
+    }
+    public void sageeye()
+    {
+        set("현자의 눈", "상대의 숨겨진 정보들을 꿰뚫어봅니다.");
+    }
+    public void grideye()
+    {
+        set("탐식의 눈", "상대를 처치하면 적의 레벨에 따라 무작위 스탯이 상승합니다.\n(1~4레벨은 1. 5~7레벨은 2. 8~10레벨은 3.)");
+    }
+    public void raphael()
+    {
+        set("라파엘의 가호", "모든 상태이상에 대해 면역이 됩니다.");
+    }
+    public void dispel()
+    {
+        set("디스펠", "(한 전투당 한번 사용 가능.아이콘 클릭으로 사용.)\n상대의 다음 행동을 무효로 합니다.");
     }
     #endregion
 }
