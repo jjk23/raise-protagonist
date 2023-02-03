@@ -74,3 +74,5 @@ Debug' is an ambiguous reference between 'UnityEngine.Debug' and 'System.Diagnos
 같이 에러가 뜰 때가 있는데 
 이는 unityengine의 debug를 쓸지 diagnostics의 debug를 쓸지 헷갈려서 일어나는 문제.
 using System.Diagnostics; 를 지우거나 UnityEngine.Debug.Log 를 사용하면댐
+-------------------------------------------------------------------------------------------------------
+dontdestroyonload는 root오브젝트. 즉 부모객체가 없는 오브젝트에만 작동한다.

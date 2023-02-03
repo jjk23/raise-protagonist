@@ -53,6 +53,7 @@ public class TextManager : MonoBehaviour
                 dtext.DOText("여긴 너같은 애송이가 올 곳이 아니다.\n<b><color=yellow>VIP</color><b>고객님들을 위한 곳이라고.", 0.5f);
                 break;
             case 1:
+                dtext.text="";
                 dtext.DOText("알아들었으면 썩 꺼져.", 0.5f);
                 break;
             case 2:

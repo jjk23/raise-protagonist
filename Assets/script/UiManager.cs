@@ -51,7 +51,7 @@ public class UiManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        villagebgm.Play();       
+        villagebgm.Play();
     }
 
     // Update is called once per frame
@@ -101,7 +101,14 @@ public class UiManager : MonoBehaviour
     #region ¿©°ü ui
     public void clickrest()
     {
-        StartCoroutine("restco");
+        if(GameManager.Instance.gold>=100)
+        {
+            StartCoroutine("restco");
+        }
+        else
+        {
+            nosound.Play();
+        }
     }
     IEnumerator restco()
     {
@@ -114,7 +121,7 @@ public class UiManager : MonoBehaviour
         black.DOFade(0, 3f);
         yield return new WaitForSeconds(3);
         black.gameObject.SetActive(false);
-        GameManager.Instance.gold -= 50;
+        GameManager.Instance.gold -= 100;
         GameManager.Instance.hp = 300;
         GameManager.Instance.cure();
         villagebgm.Play();
@@ -128,7 +135,7 @@ public class UiManager : MonoBehaviour
         ccnt = 0;
         curet.text= "0";
         shopin.Play();
-        shopui.GetComponent<RectTransform>().DOAnchorPosY(0, 2).SetEase(Ease.OutElastic);
+        shopui.GetComponent<RectTransform>().DOAnchorPosY(50, 2).SetEase(Ease.OutElastic);
     }
     public void shopexit()
     {

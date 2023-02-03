@@ -16,8 +16,9 @@ public class SkillManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        DontDestroyOnLoad(gameObject);
         skillname = null;
+        getpassive("광전사");
+        getpassive("전설");
     }
 
     // Update is called once per frame
