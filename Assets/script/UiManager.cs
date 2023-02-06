@@ -26,17 +26,21 @@ public class UiManager : MonoBehaviour
     public TextMeshProUGUI spdt;
     public TextMeshProUGUI goldt;
     public TextMeshProUGUI hpt;
+    public TextMeshProUGUI tpt;
+    public TextMeshProUGUI expt;
     public TextMeshProUGUI levelt;
     public TextMeshProUGUI potiont;//상점 포션개수 텍스트
     public TextMeshProUGUI potiongold;
     public TextMeshProUGUI curet;//상점 만병통치약 개수 텍스트
     public TextMeshProUGUI curegold;
     public TextMeshProUGUI newskilltext;
-    public TextMeshProUGUI dayt;//날짜 텍스트
+    public TextMeshProUGUI dayt;//날짜 텍스트   
     public RadialSlider mastervol;
     public RadialSlider bgmvol;
     public RadialSlider sevol;
     public Slider hpslider;
+    public Slider tpslider;
+    public Slider expslider;
     public GameObject restui;
     public GameObject setui;
     public GameObject shopui;
@@ -44,6 +48,7 @@ public class UiManager : MonoBehaviour
     public GameObject getskillui;
     public GameObject passiveui;
     public GameObject hidpassiveui;
+    public GameObject dungeonui;
     public GameObject[] skills = new GameObject[4];
     public GameObject[] bags = new GameObject[6];
     public Image black;
@@ -62,6 +67,8 @@ public class UiManager : MonoBehaviour
         spdt.text = "민첩: " + GameManager.Instance.spd;
         goldt.text = "소지금: " + GameManager.Instance.gold;
         hpt.text = ""+GameManager.Instance.hp;
+        tpt.text = "" + GameManager.Instance.tp;
+        expt.text = "" + GameManager.Instance.exp;
         levelt.text = "LV: " + GameManager.Instance.level;
         dayt.text = "DAY: " + GameManager.Instance.day;
         #region 볼륨조절
@@ -91,6 +98,8 @@ public class UiManager : MonoBehaviour
         }
         #endregion
         hpslider.value = GameManager.Instance.hp;
+        tpslider.value = GameManager.Instance.tp;
+        expslider.value = GameManager.Instance.exp;
     }
     #region 암시장 ui
     public void clickblack()
@@ -390,6 +399,12 @@ public class UiManager : MonoBehaviour
             shopout.Play();
             hidpassiveui.transform.DORotate(new Vector3(0, 0, 180), 2f);
         }
+    }
+    #endregion
+    #region 던전 ui
+    public void clickdungeon()
+    {
+        active(dungeonui);
     }
     #endregion
     #region 편의성 함수

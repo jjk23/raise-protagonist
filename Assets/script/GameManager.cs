@@ -5,10 +5,13 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public int level = 1;
+    public int exp = 0;
+    public int maxexp = 4;//4(1+1+2),7(2+2+3),10(3+3+4),13(4+4+5),16,19,22,25. 마지막엔 30필요.
     public int str = 5;
     public int def = 5;
     public int spd = 5;
     public int hp = 50;
+    public int tp = 0;
     public int gold = 10000;
     public int day = 1;
     public int enstr;//상대 스탯들
