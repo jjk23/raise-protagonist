@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public int level = 1;
     public int exp = 0;
-    public int maxexp = 4;//4(1+1+2),7(2+2+3),10(3+3+4),13(4+4+5),16,19,22,25. 마지막엔 30필요.
+    public int maxexp = 10;//10,20,30,40...90
     public int str = 5;
     public int def = 5;
     public int spd = 5;

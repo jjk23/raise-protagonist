@@ -68,7 +68,7 @@ public class UiManager : MonoBehaviour
         goldt.text = "소지금: " + GameManager.Instance.gold;
         hpt.text = ""+GameManager.Instance.hp;
         tpt.text = "" + GameManager.Instance.tp;
-        expt.text = "" + GameManager.Instance.exp;
+        expt.text = GameManager.Instance.exp+"/"+GameManager.Instance.maxexp;
         levelt.text = "LV: " + GameManager.Instance.level;
         dayt.text = "DAY: " + GameManager.Instance.day;
         #region 볼륨조절
