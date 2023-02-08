@@ -8,4 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/village.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/clodia forest.unity
+    guid: 7249d8ecf4024a642b07c2a2ad50c44b
+  - enabled: 1
+    path: Assets/Scenes/cold mountain.unity
+    guid: bd799c0f3811ec34ebc88b620ae2f08e
   m_configObjects: {}

@@ -56,7 +56,7 @@ public class UiManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        villagebgm.Play();
+        
     }
 
     // Update is called once per frame
@@ -86,7 +86,7 @@ public class UiManager : MonoBehaviour
         }
         else
         {
-            mixer.SetFloat("BGM", -25 + (mastervol.SliderValue / 4));
+            mixer.SetFloat("BGM", -25 + (bgmvol.SliderValue / 4));
         }
         if (sevol.SliderValue == 0)
         {
@@ -94,23 +94,17 @@ public class UiManager : MonoBehaviour
         }
         else
         {
-            mixer.SetFloat("SE", -25 + (mastervol.SliderValue / 4));
+            mixer.SetFloat("SE", -25 + (sevol.SliderValue / 4));
         }
         #endregion
         hpslider.value = GameManager.Instance.hp;
         tpslider.value = GameManager.Instance.tp;
         expslider.value = GameManager.Instance.exp;
     }
-    #region 암시장 ui
-    public void clickblack()
-    {    
-        GameManager.Instance.dindex = 0;
-    }
-    #endregion
     #region 여관 ui
     public void clickrest()
     {
-        if(GameManager.Instance.gold>=100)
+        if (GameManager.Instance.gold >= 100)
         {
             StartCoroutine("restco");
         }
@@ -125,6 +119,7 @@ public class UiManager : MonoBehaviour
         black.gameObject.SetActive(true);
         restsound.Play();
         cancel(restui);
+
         black.DOFade(1, 4f);
         yield return new WaitForSeconds(5);
         black.DOFade(0, 3f);
@@ -342,16 +337,16 @@ public class UiManager : MonoBehaviour
     {
         for(int i=0;i<3;i++)
         {
-            bags[i].transform.DOMoveY(0, 0.5f);
+            bags[i].transform.DOMoveY(500, 0.5f);
             ticksound.Play();
             yield return new WaitForSeconds(0.2f);
         }
-        bags[3].transform.DOMoveY(1.5f, 0.5f);
+        bags[3].transform.DOMoveY(655, 0.5f);
         ticksound.Play();
         yield return new WaitForSeconds(0.2f);
-        bags[4].transform.DOMoveY(-1f, 0.5f);
+        bags[4].transform.DOMoveY(395, 0.5f);
         ticksound.Play();
-        bags[5].transform.DOMoveY(0, 0.5f);
+        bags[5].transform.DOMoveY(500, 0.5f);//cancel
     }
     public void cancelbag()
     {
@@ -361,16 +356,16 @@ public class UiManager : MonoBehaviour
     {
         for (int i = 0; i < 3; i++)
         {
-            bags[i].transform.DOMoveY(-12, 0.5f);
+            bags[i].transform.DOMoveY(-500, 0.5f);
             ticksound.Play();
             yield return new WaitForSeconds(0.2f);
         }
-        bags[4].transform.DOMoveY(-10, 0.5f);
+        bags[4].transform.DOMoveY(-395, 0.5f);
         ticksound.Play();
         yield return new WaitForSeconds(0.2f);
-        bags[3].transform.DOMoveY(-13, 0.5f);
+        bags[3].transform.DOMoveY(-655, 0.5f);
         ticksound.Play();
-        bags[5].transform.DOMoveY(-16, 0.5f);
+        bags[5].transform.DOMoveY(-1500, 0.5f);
     }
     #endregion
     #region 패시브 ui
@@ -401,17 +396,20 @@ public class UiManager : MonoBehaviour
         }
     }
     #endregion
-    #region 던전 ui
-    public void clickdungeon()
+    #region 세팅ui
+    public void clickset()
     {
-        active(dungeonui);
+        setui.transform.localPosition = new Vector3(0, 0, 0);//setui는 처음에 active상태로 있어야 소리 재생 가능 즉 active상태로 저 멀리 놨다가 원래 위치로 되돌리는 작업
+        setui.SetActive(false);
+        oksound.Play();
+        setui.SetActive(true);
+        setui.transform.localScale = new Vector3(0, 0, 0);
+        setui.transform.DOScale(new Vector3(1, 1, 1), 0.5f).SetEase(Ease.OutQuad);
     }
     #endregion
     #region 편의성 함수
     public void active(GameObject gm)
     {
-        setui.transform.localPosition = new Vector3(0, 0, 0);//setui는 처음에 active상태로 있어야 소리 재생 가능 즉 active상태로 저 멀리 놨다가 원래 위치로 되돌리는 작업
-        setui.SetActive(false);
         oksound.Play();
         gm.SetActive(true);
         gm.transform.localScale = new Vector3(0,0,0);
