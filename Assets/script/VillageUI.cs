@@ -29,10 +29,34 @@ public class VillageUI : MonoBehaviour
     {
         
     }
-    #region 여관ui
+    #region 여관 ui
     public void clickrest()
     {
-        GameObject.Find("gamemanager").GetComponent<UiManager>().clickrest();
+        if (GameManager.Instance.gold >= 100)
+        {
+            StartCoroutine("restco");
+        }
+        else
+        {
+            nosound.Play();
+        }
+    }
+    IEnumerator restco()
+    {
+        villagebgm.Pause();
+        GameObject.Find("gamemanager").GetComponent<UiManager>().black.gameObject.SetActive(true);
+        black = GameObject.Find("black").GetComponent<Image>();
+        restsound.Play();
+        cancel(restui);
+        black.DOFade(1, 4f);
+        yield return new WaitForSeconds(5);
+        black.DOFade(0, 3f);
+        yield return new WaitForSeconds(3);
+        black.gameObject.SetActive(false);
+        GameManager.Instance.gold -= 100;
+        GameManager.Instance.hp = 300;
+        GameManager.Instance.cure();
+        villagebgm.Play();
     }
     #endregion
     #region 암시장 ui

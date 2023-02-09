@@ -6,10 +6,7 @@ using UnityEngine.SceneManagement;
 public class DungeonManager : MonoBehaviour
 {
     public GameObject[] dungeon = new GameObject[20];
-    public GameObject market;
-    int index = 0;//현재 선택한 던전 인덱스
-    public AudioSource oksound;
-    public int[] dungeonhard = new int[20];
+    public AudioSource oksound;    
     // Start is called before the first frame update
     void Start()
     {
@@ -24,14 +21,13 @@ public class DungeonManager : MonoBehaviour
     public void setdungeon(int num)
     {
         oksound.Play();
-        dungeon[index].SetActive(false);
+        dungeon[GameManager.Instance.dungeonindex].SetActive(false);
         dungeon[num].SetActive(true);
-        index = num;
+        GameManager.Instance.dungeonindex = num;
     }
     public void enterdungeon()
     {
-        market.SetActive(false);
-        switch(index)
+        switch(GameManager.Instance.dungeonindex)
         {
             case 0:
                 SceneManager.LoadScene("clodia forest");               

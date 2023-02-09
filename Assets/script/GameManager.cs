@@ -26,6 +26,9 @@ public class GameManager : MonoBehaviour
      * 0:vip없이 암시장 출입 대화
      */
     #endregion
+    public int dungeonindex;//현재 선택한 던전 인덱스
+    public int[] dungeonhard = new int[20];//던전 난이도
+    public int infoindex;//현재 전투중인 적 정보 해금 개수
     public bool poison=false;
     public bool paralyze=false;
     public bool tired=false;
@@ -34,6 +37,7 @@ public class GameManager : MonoBehaviour
     public bool silence = false;
     public bool curse = false;
     public bool key = false;
+    public bool isbattle=false;
     #region 패시브 모음
     public bool pberserk = false;
     public bool pshielder = false;

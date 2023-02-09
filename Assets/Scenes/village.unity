@@ -1485,9 +1485,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  market: {fileID: 1557230520}
   oksound: {fileID: 26766209}
-  dungeonhard: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 --- !u!82 &26766209
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1591,13 +1589,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 26766207}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 420605653}
-  m_RootOrder: 15
+  m_Father: {fileID: 278063847}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -27221,6 +27219,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 26766210}
   - {fileID: 1893739130}
   - {fileID: 913094709}
   - {fileID: 576744482}
@@ -33010,7 +33009,6 @@ RectTransform:
   - {fileID: 1750629913}
   - {fileID: 1453932790}
   - {fileID: 56326678}
-  - {fileID: 26766210}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -33109,6 +33107,9 @@ MonoBehaviour:
   potioncnt: 0
   curecnt: 0
   dindex: 0
+  dungeonindex: 0
+  dungeonhard: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  infoindex: 0
   poison: 0
   paralyze: 0
   tired: 0
@@ -33117,6 +33118,7 @@ MonoBehaviour:
   silence: 0
   curse: 0
   key: 0
+  isbattle: 0
   pberserk: 1
   pshielder: 0
   passassin: 0
@@ -33298,14 +33300,13 @@ MonoBehaviour:
   hpslider: {fileID: 1086291875}
   tpslider: {fileID: 653678429}
   expslider: {fileID: 1699756560}
-  restui: {fileID: 1195578099}
   setui: {fileID: 1514018436}
   shopui: {fileID: 1594407406}
   skillui: {fileID: 976298033}
   getskillui: {fileID: 1840420007}
   passiveui: {fileID: 91563597}
   hidpassiveui: {fileID: 2045423265}
-  dungeonui: {fileID: 1372783922}
+  market: {fileID: 1557230520}
   skills:
   - {fileID: 745992718}
   - {fileID: 1845444021}
@@ -39825,7 +39826,7 @@ RectTransform:
   m_Children:
   - {fileID: 1242709033}
   m_Father: {fileID: 278063847}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -48110,7 +48111,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 278063847}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -54936,7 +54937,7 @@ RectTransform:
   m_Children:
   - {fileID: 1178995358}
   m_Father: {fileID: 278063847}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -65657,7 +65658,7 @@ RectTransform:
   - {fileID: 1669018057}
   - {fileID: 1516058725}
   m_Father: {fileID: 278063847}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -66532,8 +66533,8 @@ MonoBehaviour:
   onClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 420605659}
-        m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
+      - m_Target: {fileID: 519420033}
+        m_TargetAssemblyTypeName: VillageUI, Assembly-CSharp
         m_MethodName: cancel
         m_Mode: 2
         m_Arguments:
@@ -69595,7 +69596,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 278063847}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -73436,8 +73437,8 @@ MonoBehaviour:
   onClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 420605659}
-        m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
+      - m_Target: {fileID: 519420033}
+        m_TargetAssemblyTypeName: VillageUI, Assembly-CSharp
         m_MethodName: cancel
         m_Mode: 2
         m_Arguments:
@@ -74517,7 +74518,7 @@ RectTransform:
   - {fileID: 867403899}
   - {fileID: 912233325}
   m_Father: {fileID: 278063847}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -92144,7 +92145,7 @@ RectTransform:
   m_Children:
   - {fileID: 5456165}
   m_Father: {fileID: 278063847}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -96307,7 +96308,7 @@ RectTransform:
   m_Children:
   - {fileID: 1448151194}
   m_Father: {fileID: 278063847}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

@@ -36,7 +36,9 @@ mp3로 하면 가끔씩 깨져서 절대 임포트 안됨;
 TMP한글 네모로 나오는 현상은 assets->TextMesh Pro->Fonts에 폰트를 넣어두고
 창->tmp->글꼴에셋크리에이터에서 바꿀 폰트 지정해주고 오토사이징 4096&4096 ascii sdfaa적용하고 save하면
 일반 폰트가 tmp로 바뀜.
+*주의)폰트 이름이 한글이면 Generate Font Atlas가 작동을 안함.
 이래도 안되면 바꾼 tmp를 클릭해서 atlas 어쩌구를 다이나믹,sampling point size를 60으로 해주면 됨 
+
 
 텍스트 부분변경
 <b>텍스트<b>하면 굵어지고

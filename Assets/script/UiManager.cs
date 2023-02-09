@@ -41,14 +41,13 @@ public class UiManager : MonoBehaviour
     public Slider hpslider;
     public Slider tpslider;
     public Slider expslider;
-    public GameObject restui;
     public GameObject setui;
     public GameObject shopui;
     public GameObject skillui;
     public GameObject getskillui;
     public GameObject passiveui;
     public GameObject hidpassiveui;
-    public GameObject dungeonui;
+    public GameObject market;
     public GameObject[] skills = new GameObject[4];
     public GameObject[] bags = new GameObject[6];
     public Image black;
@@ -101,36 +100,7 @@ public class UiManager : MonoBehaviour
         tpslider.value = GameManager.Instance.tp;
         expslider.value = GameManager.Instance.exp;
     }
-    #region 여관 ui
-    public void clickrest()
-    {
-        if (GameManager.Instance.gold >= 100)
-        {
-            StartCoroutine("restco");
-        }
-        else
-        {
-            nosound.Play();
-        }
-    }
-    IEnumerator restco()
-    {
-        villagebgm.Pause();
-        black.gameObject.SetActive(true);
-        restsound.Play();
-        cancel(restui);
-
-        black.DOFade(1, 4f);
-        yield return new WaitForSeconds(5);
-        black.DOFade(0, 3f);
-        yield return new WaitForSeconds(3);
-        black.gameObject.SetActive(false);
-        GameManager.Instance.gold -= 100;
-        GameManager.Instance.hp = 300;
-        GameManager.Instance.cure();
-        villagebgm.Play();
-    }
-    #endregion
+    
     #region 상점 ui
     public void clickshop()
     {
