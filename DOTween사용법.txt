@@ -2,7 +2,8 @@
 위에 using DG.Tweening;
 transform.DO어쩌구로 트위닝 효과 사용 가능
 transform.DOMove(vector3.up, 5)같이 하면 위쪽으로 5초동안 이동함
-DOMoveY같은건 대략적으로 안의 값의 10배의 좌표로 이동하는듯
+DOMoveY같은건 정해진 좌표값으로 이동하는거. 현재 좌표에서 +로 이동하는게 아님.
+그냥 dolocalmove로 하는게 훨씬 나은듯;
 
 material mat=getcomponent로 불러와서
 mat.DOColor(Color.cyan,5)처럼 색깔을 서서히 변경도 가능

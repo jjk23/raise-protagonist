@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour
     public bool curse = false;
     public bool key = false;
     public bool isbattle=false;
+    public bool dispell = false;
+    public bool myturn;
     #region 패시브 모음
     public bool pberserk = false;
     public bool pshielder = false;
