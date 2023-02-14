@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -6,19 +7,36 @@ using UnityEngine.UI;
 
 public class SkillManager : MonoBehaviour
 {
+    private static SkillManager instance = null;
     public string skillname;
     public string color;
     public TextMeshProUGUI[] skilltext = new TextMeshProUGUI[4];    
     public Image[] skillicon = new Image[4];
+    public Image red;
     public Sprite[] iconsprites = new Sprite[50];
+    public AudioSource pucksound;
     public GameObject[] passives = new GameObject[15];
     public GameObject[] passivelock = new GameObject[15];
+    public GameObject slash;
     // Start is called before the first frame update
-    void Start()
+    public static SkillManager Instance
     {
+        get
+        {
+            if (null == instance)
+            {
+                return null;
+            }
+            return instance;
+        }
+    }
+    private void Awake()
+    {
+        instance = this;
+    }
+    void Start()
+    {        
         skillname = null;
-        getpassive("±¤Àü»ç");
-        getpassive("Àü¼³");
     }
 
     // Update is called once per frame
@@ -171,5 +189,48 @@ public class SkillManager : MonoBehaviour
                 icon.sprite = iconsprites[8];
                 break;
         }
+    }
+    IEnumerator Slash()
+    {
+        var clone = Instantiate(slash, transform);
+        Destroy(clone, 3f);
+        yield return new WaitForSeconds(1);
+        StartCoroutine("damageco");
+        if(GameManager.Instance.myturn)
+        {
+            yield return new WaitForSeconds(0.35f);
+            GameManager.Instance.myturn=false;
+        }
+        else
+        {
+            yield return new WaitForSeconds(3);
+            GameManager.Instance.myturn=true;
+        }
+    }
+    IEnumerator damageco()
+    {
+        pucksound.Play();
+        if (GameManager.Instance.myturn)
+        {
+            GameObject.Find("enemy").GetComponent<Image>().color = new Color32(255, 255, 255, 0);
+            yield return new WaitForSeconds(0.2f);
+            GameObject.Find("enemy").GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+            yield return new WaitForSeconds(0.1f);
+            GameObject.Find("enemy").GetComponent<Image>().color = new Color32(255, 255, 255, 0);
+            yield return new WaitForSeconds(0.05f);
+            GameObject.Find("enemy").GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+        }
+        else
+        {
+            red.gameObject.SetActive(true);
+            red.color = new Color32(255, 0, 0, 255);
+            red.DOFade(0, 3);
+            yield return new WaitForSeconds(3);
+            red.gameObject.SetActive(false);
+        }
+    }
+    public void adsdasdasdsa()
+    {
+        StartCoroutine("Slash");
     }
 }

@@ -52,7 +52,7 @@ public class ClodiaUI : MonoBehaviour// 클로디아의 숲은 인덱스 0.
                 {
                     case 0:
                         setmonster(honet, 50, 2, 2, 8);
-                        StartCoroutine("battle","honetco");
+                        StartCoroutine("battle","honetco");//코루틴은 이렇게 쉼표로 구분해서 매개변수를 넣음
                         break; 
                     case 1:
                         break; 
@@ -319,6 +319,7 @@ public class ClodiaUI : MonoBehaviour// 클로디아의 숲은 인덱스 0.
             case 0:
                 skillname.text = "일반공격";
                 yield return new WaitForSeconds(1);
+                
                 break;
             case 1:
                 break;
