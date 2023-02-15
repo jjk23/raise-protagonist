@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -29,6 +31,8 @@ public class GameManager : MonoBehaviour
     public int dungeonindex;//현재 선택한 던전 인덱스
     public int[] dungeonhard = new int[20];//던전 난이도
     public int infoindex;//현재 전투중인 적 정보 해금 개수
+    public int damage = 0;//전투할때 내가 주는 데미지
+    public int endamage = 0;//전투할때 받는 데미지
     public bool poison=false;
     public bool paralyze=false;
     public bool tired=false;
@@ -62,6 +66,9 @@ public class GameManager : MonoBehaviour
     public string weapon;
     public string armer;
     public string accessory;
+    public string enname;//적 이름
+    public Slider enhpslider;
+    public TextMeshProUGUI enhpt;
 
     #region 싱글톤 설정
     //게임매니저의 인스턴스를 담는 전역변수(static 변수이지만 이해하기 쉽게 전역변수라고 하겠다).
@@ -112,5 +119,32 @@ public class GameManager : MonoBehaviour
         tired=false;
         blood= false;
         silence= false; 
+    }
+    public void getdamage(int dmg)//데미지 계산식
+    {
+        if (!myturn)//내 턴이 아니면
+        {
+            endamage = enstr + dmg - def;//상대의 데미지
+            if (endamage < 0)
+            {
+                endamage = 0;
+            }
+            hp -= endamage;
+        }
+        else if (myturn)
+        {
+            damage = str + dmg - endef;
+            if (damage < 0)
+            {
+                damage = 0;
+            }
+            enhp-= damage;
+        }
+    }
+    public void enhpset()//적 hp ui적용
+    {                
+        enhpslider.value = enhp;
+        enhpt = GameObject.Find("enhpnum").GetComponent<TextMeshProUGUI>();
+        enhpt.text = "" + enhp;
     }
 }

@@ -18,6 +18,8 @@ public class SkillManager : MonoBehaviour
     public GameObject[] passives = new GameObject[15];
     public GameObject[] passivelock = new GameObject[15];
     public GameObject slash;
+    public GameObject circle;
+    public bool isco = false;//이게 false여야지 적이 스킬 사용
     // Start is called before the first frame update
     public static SkillManager Instance
     {
@@ -190,28 +192,57 @@ public class SkillManager : MonoBehaviour
                 break;
         }
     }
-    IEnumerator Slash()
+    #region 스킬 코루틴 모음
+    IEnumerator Slash()//기본공격
     {
         var clone = Instantiate(slash, transform);
         Destroy(clone, 3f);
-        yield return new WaitForSeconds(1);
-        StartCoroutine("damageco");
-        if(GameManager.Instance.myturn)
+        yield return new WaitForSeconds(0.5f);
+        if (GameManager.Instance.myturn)
         {
+            GameManager.Instance.getdamage(0);
+            StartCoroutine("damageco");
             yield return new WaitForSeconds(0.35f);
-            GameManager.Instance.myturn=false;
+            GameManager.Instance.myturn = false;
         }
         else
         {
+            GameManager.Instance.getdamage(0);
+            StartCoroutine("damageco");
             yield return new WaitForSeconds(3);
-            GameManager.Instance.myturn=true;
+            GameManager.Instance.myturn = true;
         }
+        isco = false;
     }
-    IEnumerator damageco()
+    IEnumerator Wind()
+    {
+        var clone = Instantiate(circle, transform);
+        Destroy(clone, 3f);
+        yield return new WaitForSeconds(0.5f);        
+        if (GameManager.Instance.myturn)
+        {
+            GameManager.Instance.getdamage(20);
+            StartCoroutine("damageco");
+            yield return new WaitForSeconds(0.35f);
+            GameManager.Instance.myturn = false;
+        }
+        else
+        {
+            GameManager.Instance.getdamage(20);
+            StartCoroutine("damageco");
+            yield return new WaitForSeconds(3);
+            GameManager.Instance.myturn = true;
+        }
+        isco = false;
+    }
+    #endregion
+    #region 편의성 함수
+    IEnumerator damageco()//피격 이펙트 실행. 이 이전에 얼마나 데미지를 받는지 설정할것.
     {
         pucksound.Play();
         if (GameManager.Instance.myturn)
         {
+            GameManager.Instance.enhpset();
             GameObject.Find("enemy").GetComponent<Image>().color = new Color32(255, 255, 255, 0);
             yield return new WaitForSeconds(0.2f);
             GameObject.Find("enemy").GetComponent<Image>().color = new Color32(255, 255, 255, 255);
@@ -229,8 +260,6 @@ public class SkillManager : MonoBehaviour
             red.gameObject.SetActive(false);
         }
     }
-    public void adsdasdasdsa()
-    {
-        StartCoroutine("Slash");
-    }
+    
+    #endregion
 }

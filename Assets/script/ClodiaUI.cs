@@ -20,6 +20,7 @@ public class ClodiaUI : MonoBehaviour// 클로디아의 숲은 인덱스 0.
     public AudioSource forestbgm;
     public AudioSource skillsound;
     public TextMeshProUGUI skillname;
+    public bool isco = false;
     
     void Start()
     {
@@ -289,12 +290,15 @@ public class ClodiaUI : MonoBehaviour// 클로디아의 숲은 인덱스 0.
         }
     }
     #region 클로디아 몬스터 배틀 코루틴
-    IEnumerator battle(string name)//모든 몬스터에게 공통으로 적용되는 battle 밑작업
+    IEnumerator battle(string name)//모든 몬스터에게 공통으로 적용되는 battle 밑작업. battle 한번 시작하면 몬스터체력 0될때까지 무한루프
     {
+        GameManager.Instance.enhpset();
+        yield return new WaitForSeconds(4);
+        GameManager.Instance.enname = name.Substring(0,name.Length - 2);//뒤에 있는 co를 잘라서 몬스터 이름을 파악
         whofirst();
-        while(GameManager.Instance.enhp>0)
+        while (GameManager.Instance.enhp > 0)
         {
-            if(GameManager.Instance.myturn==false)
+            if (GameManager.Instance.myturn == false && !SkillManager.Instance.isco)//isco는 코루틴이 진행중인지 확인하고 진행 안하면 시행한다는 뜻.
             {
                 if (GameManager.Instance.dispell)
                 {
@@ -306,22 +310,32 @@ public class ClodiaUI : MonoBehaviour// 클로디아의 숲은 인덱스 0.
                     enskill.SetActive(true);
                     skillsound.Play();
                     StartCoroutine(name);
-                }               
+                    SkillManager.Instance.isco = true;
+                }
             }
+            yield return new WaitForSeconds(0.1f);
         }
         yield return new WaitForSeconds(0);
     }
     IEnumerator honetco()
     {
         int rand = Random.Range(0, 2);
+        Debug.Log("honetco");
         switch (rand)
         {
             case 0:
+                enskill.SetActive(true);
                 skillname.text = "일반공격";
-                yield return new WaitForSeconds(1);
-                
+                yield return new WaitForSeconds(0.5f);
+                enskill.SetActive(false);
+                SkillManager.Instance.StartCoroutine("Slash");
                 break;
             case 1:
+                enskill.SetActive(true);
+                skillname.text = "날갯짓";
+                yield return new WaitForSeconds(0.5f);
+                enskill.SetActive(false);
+                SkillManager.Instance.StartCoroutine("Wind");
                 break;
         }
     }
@@ -333,19 +347,26 @@ public class ClodiaUI : MonoBehaviour// 클로디아의 숲은 인덱스 0.
         battlebgm.Play();
         StartCoroutine("battlestartco");
         enermy.SetActive(true);
+        GameManager.Instance.enhpslider = GameObject.Find("enermyhp").GetComponent<Slider>();
+        GameManager.Instance.enhpslider.maxValue = enhp;
         GameManager.Instance.enhp= enhp;
         GameManager.Instance.enstr= enstr;
         GameManager.Instance.endef= endef;
         GameManager.Instance.enspd= enspd;
-        for(int i=1;i<10;i++)
+        for (int i = 1; i < 10; i++)
         {
-            if(GameObject.Find("info"+i).transform.GetChild(0).gameObject.activeSelf==false)//해당 몬스터의 정보가 얼마나 열람되었는지 확인
+            if (GameObject.Find("info" + i).transform.GetChild(0).gameObject.activeSelf == false)//해당 몬스터의 정보가 얼마나 열람되었는지 확인
             {
                 break;
             }
             else
             {
                 GameManager.Instance.infoindex += 1;
+            }
+            if (i > 10)
+            {
+                Debug.Log("a");
+                break;
             }
         }
         GameObject.Find("eninfo").SetActive(false);//처음에 eninfo가 활성화 되어있어야 FIND를 수행할수 있음

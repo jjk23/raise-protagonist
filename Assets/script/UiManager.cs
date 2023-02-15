@@ -34,13 +34,13 @@ public class UiManager : MonoBehaviour
     public TextMeshProUGUI curet;//상점 만병통치약 개수 텍스트
     public TextMeshProUGUI curegold;
     public TextMeshProUGUI newskilltext;
-    public TextMeshProUGUI dayt;//날짜 텍스트   
+    public TextMeshProUGUI dayt;//날짜 텍스트      
     public RadialSlider mastervol;
     public RadialSlider bgmvol;
     public RadialSlider sevol;
     public Slider hpslider;
     public Slider tpslider;
-    public Slider expslider;
+    public Slider expslider;    
     public GameObject setui;
     public GameObject shopui;
     public GameObject skillui;
@@ -98,7 +98,7 @@ public class UiManager : MonoBehaviour
         #endregion
         hpslider.value = GameManager.Instance.hp;
         tpslider.value = GameManager.Instance.tp;
-        expslider.value = GameManager.Instance.exp;
+        expslider.value = GameManager.Instance.exp;        
     }
     
     #region 상점 ui
@@ -273,7 +273,13 @@ public class UiManager : MonoBehaviour
     }
     #endregion
     #region 스킬 ui
-    
+    public void clickattack()
+    {
+        if(GameManager.Instance.myturn)
+        {
+            SkillManager.Instance.StartCoroutine("Slash");
+        }        
+    }
     public void clickskill()
     {
         skillui.SetActive(true);
