@@ -108,6 +108,10 @@ public class SkillExplain : MonoBehaviour
         skillfind(GameManager.Instance.skill4);
     }
     #region 스킬설명
+    public void infosearch()
+    {
+        set("통찰", "적의 정보를 조사하는데 있어\n가장 기초적인 방법입니다.\n가장 위에있는 정보부터 해금할 수 있으며\n한 턴을 소모합니다.\n(한 번 해금한 정보는 영구적으로 유지됩니다.)");
+    }
     public void critical()
     {
         set("급소찌르기(C랭크)", "적의 급소를 찔러 데미지를 줍니다.\ntp:20/데미지:10(대인)");

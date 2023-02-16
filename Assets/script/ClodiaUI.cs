@@ -52,7 +52,7 @@ public class ClodiaUI : MonoBehaviour// 클로디아의 숲은 인덱스 0.
                 switch (stage)
                 {
                     case 0:
-                        setmonster(honet, 50, 2, 2, 8);
+                        setmonster(honet, 30, 16, 2, 8);
                         StartCoroutine("battle","honetco");//코루틴은 이렇게 쉼표로 구분해서 매개변수를 넣음
                         break; 
                     case 1:
@@ -293,13 +293,14 @@ public class ClodiaUI : MonoBehaviour// 클로디아의 숲은 인덱스 0.
     IEnumerator battle(string name)//모든 몬스터에게 공통으로 적용되는 battle 밑작업. battle 한번 시작하면 몬스터체력 0될때까지 무한루프
     {
         GameManager.Instance.enhpset();
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(4);//전투개시 ui나오는동안 기다림
         GameManager.Instance.enname = name.Substring(0,name.Length - 2);//뒤에 있는 co를 잘라서 몬스터 이름을 파악
         whofirst();
         while (GameManager.Instance.enhp > 0)
         {
             if (GameManager.Instance.myturn == false && !SkillManager.Instance.isco)//isco는 코루틴이 진행중인지 확인하고 진행 안하면 시행한다는 뜻.
             {
+                yield return new WaitForSeconds(0.5f);
                 if (GameManager.Instance.dispell)
                 {
                     GameManager.Instance.myturn = true;
@@ -309,18 +310,18 @@ public class ClodiaUI : MonoBehaviour// 클로디아의 숲은 인덱스 0.
                 {
                     enskill.SetActive(true);
                     skillsound.Play();
-                    StartCoroutine(name);
+                    StartCoroutine(name);//몬스터 배틀 코루틴
                     SkillManager.Instance.isco = true;
+                    GameManager.Instance.tp += Random.Range(1, 4);
                 }
             }
             yield return new WaitForSeconds(0.1f);
         }
-        yield return new WaitForSeconds(0);
+        GameManager.Instance.isbattle = false;
     }
     IEnumerator honetco()
     {
         int rand = Random.Range(0, 2);
-        Debug.Log("honetco");
         switch (rand)
         {
             case 0:
@@ -343,6 +344,7 @@ public class ClodiaUI : MonoBehaviour// 클로디아의 숲은 인덱스 0.
     #region 편의성 함수
     public void setmonster(GameObject enermy,int enhp,int enstr,int endef,int enspd)//몬스터 소환 함수
     {
+        GameManager.Instance.isbattle= true;
         forestbgm.Pause();
         battlebgm.Play();
         StartCoroutine("battlestartco");
@@ -353,20 +355,16 @@ public class ClodiaUI : MonoBehaviour// 클로디아의 숲은 인덱스 0.
         GameManager.Instance.enstr= enstr;
         GameManager.Instance.endef= endef;
         GameManager.Instance.enspd= enspd;
+        GameManager.Instance.infoindex = 0;
         for (int i = 1; i < 10; i++)
         {
-            if (GameObject.Find("info" + i).transform.GetChild(0).gameObject.activeSelf == false)//해당 몬스터의 정보가 얼마나 열람되었는지 확인
+            if (GameObject.Find("info" + i).transform.GetChild(0).gameObject.activeSelf == false)//해당 몬스터의 정보가 얼마나 열람되었는지 확인. 이후 GameManager의 infoindex에 해금된 정보갯수 저장
             {
                 break;
             }
             else
             {
                 GameManager.Instance.infoindex += 1;
-            }
-            if (i > 10)
-            {
-                Debug.Log("a");
-                break;
             }
         }
         GameObject.Find("eninfo").SetActive(false);//처음에 eninfo가 활성화 되어있어야 FIND를 수행할수 있음
@@ -403,6 +401,17 @@ public class ClodiaUI : MonoBehaviour// 클로디아의 숲은 인덱스 0.
         battlestart.transform.DOLocalMoveX(300, 3);
         yield return new WaitForSeconds(3);
         battlestart.transform.DOLocalMoveX(2000, 0.5f);
+    }
+    public void infoset(GameObject eninfo)
+    {
+        if(eninfo.activeSelf)
+        {
+            eninfo.SetActive(false);
+        }
+        else
+        {
+            eninfo.SetActive(true);
+        }
     }
     #endregion
 }

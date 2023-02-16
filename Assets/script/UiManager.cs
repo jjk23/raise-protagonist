@@ -48,7 +48,7 @@ public class UiManager : MonoBehaviour
     public GameObject passiveui;
     public GameObject hidpassiveui;
     public GameObject market;
-    public GameObject[] skills = new GameObject[4];
+    public GameObject[] skills = new GameObject[5];
     public GameObject[] bags = new GameObject[6];
     public Image black;
     public Sprite bansprite;
@@ -275,15 +275,16 @@ public class UiManager : MonoBehaviour
     #region 스킬 ui
     public void clickattack()
     {
-        if(GameManager.Instance.myturn)
+        if(GameManager.Instance.myturn&& !SkillManager.Instance.isco)
         {
+            SkillManager.Instance.isco = true;
             SkillManager.Instance.StartCoroutine("Slash");
         }        
     }
     public void clickskill()
     {
         skillui.SetActive(true);
-        for(int i=0;i<4;i++)
+        for(int i=0;i<5;i++)
         {
             skills[i].transform.localPosition = new Vector3(-206.6f, -300, 0);
         }
@@ -291,6 +292,9 @@ public class UiManager : MonoBehaviour
     }
     IEnumerator skillmove()//스킬 버튼 클릭했을때 스킬 따다다닥하고 올라오는거
     {
+        ticksound.Play();
+        skills[4].transform.DOLocalMove(new Vector3(-206.6f, 160, 0), 0.5f);
+        yield return new WaitForSeconds(0.2f);
         ticksound.Play();
         skills[0].transform.DOLocalMove(new Vector3(-206.6f, 70, 0),0.5f);        
         yield return new WaitForSeconds(0.2f);
@@ -301,7 +305,7 @@ public class UiManager : MonoBehaviour
         skills[2].transform.DOLocalMove(new Vector3(-206.6f, -110, 0), 0.5f);
         yield return new WaitForSeconds(0.2f);
         ticksound.Play();
-        skills[3].transform.DOLocalMove(new Vector3(-206.6f, -200, 0), 0.5f);
+        skills[3].transform.DOLocalMove(new Vector3(-206.6f, -200, 0), 0.5f);                
     }
     #endregion
     #region 가방 ui
