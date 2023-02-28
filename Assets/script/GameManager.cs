@@ -120,7 +120,7 @@ public class GameManager : MonoBehaviour
         blood= false;
         silence= false; 
     }
-    public void getdamage(int dmg)//데미지 계산식
+    public void getdamage(int dmg)//데미지 계산 이후 피해를 주거나받는 함수
     {
         if (!myturn)//내 턴이 아니면
         {
@@ -141,7 +141,7 @@ public class GameManager : MonoBehaviour
             enhp-= damage;
         }
     }
-    public void enhpset()//적 hp ui적용
+    public void enhpset()//적 hp ui적용. update에 넣으면 최적화안되서..
     {                
         enhpslider.value = enhp;
         enhpt = GameObject.Find("enhpnum").GetComponent<TextMeshProUGUI>();

@@ -219,76 +219,36 @@ public class SkillManager : MonoBehaviour
     {
         var clone = Instantiate(slash, transform);
         Destroy(clone, 3f);
-        yield return new WaitForSeconds(0.5f);
-        if (GameManager.Instance.myturn)
+        yield return new WaitForSeconds(0.5f);      
+        int rand = Random.Range(0, 2);
+        if (GameManager.Instance.enname == "honet" && rand == 0&&GameManager.Instance.myturn)//호넷 패시브:50%로 기본공격 회피
         {
-            int rand = Random.Range(0, 2);
-            if (GameManager.Instance.enname=="honet"&& rand == 0)//호넷 패시브:50%로 기본공격 회피
-            {
-                var clone2 = Instantiate(miss, transform);
-                Destroy(clone2, 1f);
-                yield return new WaitForSeconds(1f);
-            }
-            else
-            {
-                GameManager.Instance.getdamage(0);
-                StartCoroutine("damageco");
-                yield return new WaitForSeconds(0.35f);               
-            }
+            var clone2 = Instantiate(miss, transform);
+            Destroy(clone2, 1f);
+            yield return new WaitForSeconds(1f);
             GameManager.Instance.myturn = false;
+            isco = false;
         }
         else
         {
-            GameManager.Instance.getdamage(0);
-            StartCoroutine("damageco");
-            yield return new WaitForSeconds(3);
-            GameManager.Instance.myturn = true;
+            StartCoroutine("damageco", 0);
         }
-        isco = false;
     }
     IEnumerator Wind()
     {
         var clone = Instantiate(circle, transform);
         Destroy(clone, 3f);
-        yield return new WaitForSeconds(0.5f);        
-        if (GameManager.Instance.myturn)
-        {
-            GameManager.Instance.getdamage(20);
-            StartCoroutine("damageco");
-            yield return new WaitForSeconds(0.35f);
-            GameManager.Instance.myturn = false;
-        }
-        else
-        {
-            GameManager.Instance.getdamage(20);
-            StartCoroutine("damageco");
-            yield return new WaitForSeconds(3);
-            GameManager.Instance.myturn = true;
-        }
-        isco = false;
+        yield return new WaitForSeconds(0.5f);
+        StartCoroutine("damageco",20);
     }
     IEnumerator Critical()
     {
         var clone = Instantiate(crit, transform);
         Destroy(clone, 3f);
         yield return new WaitForSeconds(0.5f);
-        if (GameManager.Instance.myturn)
-        {
-            GameManager.Instance.getdamage(10);
-            StartCoroutine("damageco");
-            yield return new WaitForSeconds(0.35f);
-            GameManager.Instance.myturn = false;
-        }
-        else
-        {
-            GameManager.Instance.getdamage(10);
-            StartCoroutine("damageco");
-            yield return new WaitForSeconds(3);
-            GameManager.Instance.myturn = true;
-        }
-        isco = false;
+        StartCoroutine("damageco", 10);
     }
-    IEnumerator Search()
+    IEnumerator Search()//통찰 스킬
     {
         var clone = Instantiate(search, transform);
         Destroy(clone, 3f);
@@ -334,28 +294,32 @@ public class SkillManager : MonoBehaviour
                 break;
         }
     }
-    IEnumerator damageco()//피격 이펙트 실행. 이 이전에 얼마나 데미지를 받는지 설정할것.
+    IEnumerator damageco(int dmg)//얼마나 피해를 받는지 설정하고 피격 이펙트 실행
     {
+        GameManager.Instance.getdamage(dmg);
         pucksound.Play();
         if (GameManager.Instance.myturn)
         {
             GameManager.Instance.enhpset();
-            GameObject.Find("enemy").GetComponent<Image>().color = new Color32(255, 255, 255, 0);
+            GameObject.Find("enemy").GetComponent<Image>().color = new Color32(255, 255, 255, 0);//깜박깜박 이펙트
             yield return new WaitForSeconds(0.2f);
             GameObject.Find("enemy").GetComponent<Image>().color = new Color32(255, 255, 255, 255);
             yield return new WaitForSeconds(0.1f);
             GameObject.Find("enemy").GetComponent<Image>().color = new Color32(255, 255, 255, 0);
             yield return new WaitForSeconds(0.05f);
             GameObject.Find("enemy").GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+            GameManager.Instance.myturn = false;
         }
         else
         {
-            red.gameObject.SetActive(true);
+            red.gameObject.SetActive(true);//화면 빨갛게 이펙트
             red.color = new Color32(255, 0, 0, 255);
             red.DOFade(0, 3);
             yield return new WaitForSeconds(3);
             red.gameObject.SetActive(false);
+            GameManager.Instance.myturn = true;
         }
+        isco = false;
     }
     public string convert(string skillname)//GameManager에 한글로 저장되는 스킬이름을 코루틴 함수 호출을 위해 영어로 변환
     {
@@ -384,7 +348,7 @@ public class SkillManager : MonoBehaviour
         }
         return "오류";
     }
-    public int returntp(string skillname)//스킬이름 넣으면 얼마나 써야하는지 보여줌
+    public int returntp(string skillname)//스킬이름 넣으면 얼마나 tp를 써야하는지 보여줌
     {
         switch (skillname)
         {
