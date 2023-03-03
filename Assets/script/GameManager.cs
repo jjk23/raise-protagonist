@@ -44,6 +44,10 @@ public class GameManager : MonoBehaviour
     public bool isbattle=false;
     public bool dispell = false;
     public bool myturn;
+    public bool person;//대인타입인지
+    public bool fire;//화염타입인지
+    public bool beast;//짐승타입인지
+    public bool holy;//신성타입인지
     #region 패시브 모음
     public bool pberserk = false;
     public bool pshielder = false;
@@ -137,6 +141,26 @@ public class GameManager : MonoBehaviour
             if (damage < 0)
             {
                 damage = 0;
+            }
+            if(person)//스킬 타입 확인
+            {
+                person= false;
+            }
+            if(fire)
+            {
+                if(enname=="honet")
+                {
+                    damage *= 2;
+                }
+                fire=false;
+            }
+            if(beast)
+            {
+                beast=false;
+            }
+            if(holy)
+            {
+                holy=false;
             }
             enhp-= damage;
         }

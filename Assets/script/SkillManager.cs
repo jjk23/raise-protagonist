@@ -23,7 +23,12 @@ public class SkillManager : MonoBehaviour
     public GameObject circle;
     public GameObject search;
     public GameObject miss;
+    public GameObject cut;
     public GameObject crit;
+    public GameObject breakteeth;
+    public GameObject fsword;
+    public GameObject fire;
+    public GameObject smoke;
     public bool isco = false;//이게 false여야지 적이 스킬 사용
     // Start is called before the first frame update
     public static SkillManager Instance
@@ -85,6 +90,7 @@ public class SkillManager : MonoBehaviour
         }       
         else if(GameManager.Instance.myturn && !isco&&GameManager.Instance.isbattle)
         {
+            skillui.SetActive(false);
             switch (index)
             {
                 case 0:
@@ -243,9 +249,58 @@ public class SkillManager : MonoBehaviour
     }
     IEnumerator Critical()
     {
+        GameManager.Instance.person = true;
         var clone = Instantiate(crit, transform);
         Destroy(clone, 3f);
         yield return new WaitForSeconds(0.5f);
+        StartCoroutine("damageco", 10);
+    }
+    IEnumerator Cut()
+    {
+        var clone = Instantiate(cut, transform);
+        Destroy(clone, 3f);
+        yield return new WaitForSeconds(0.5f);
+        StartCoroutine("damageco", 20);
+    }
+    IEnumerator Firesword()
+    {
+        GameManager.Instance.fire= true;
+        var clone = Instantiate(fire, transform);
+        clone.transform.localPosition = new Vector3(700,400,10);
+        Destroy(clone, 0.8f);//destroy를 조금 늦게해야 dotween을 실행하는도중 destroy가 발생안함
+        clone.transform.DOLocalMove(new Vector3(-700, -400, 0),0.7f);
+        yield return new WaitForSeconds(0.5f);
+        clone = Instantiate(fire, transform);
+        clone.transform.localPosition = new Vector3(-700, 400, 10);
+        Destroy(clone, 0.8f);
+        clone.transform.DOLocalMove(new Vector3(700, -400, 0), 0.7f);
+        yield return new WaitForSeconds(0.5f);
+        StartCoroutine("damageco", 10);
+    }
+    IEnumerator Breakteeth()
+    {
+        GameManager.Instance.beast = true;
+        var clone = Instantiate(breakteeth, transform);
+        Destroy(clone, 3f);
+        yield return new WaitForSeconds(0.5f);
+        StartCoroutine("damageco", 10);
+    }
+    IEnumerator Shutdown()
+    {
+        GameManager.Instance.fire = true;
+        var clone = Instantiate(smoke, transform);
+        clone.transform.localPosition = new Vector3(700, 400, 10);
+        Destroy(clone, 0.4f);//destroy를 조금 늦게해야 dotween을 실행하는도중 destroy가 발생안함
+        clone.transform.DOLocalMove(new Vector3(-700, -400, 0), 0.3f);
+        yield return new WaitForSeconds(0.1f);
+        for(int i=0;i<30;i++)
+        {
+            clone = Instantiate(smoke, transform);
+            clone.transform.localPosition = new Vector3(Random.Range(-700,700), 200, 10);
+            Destroy(clone, 2);
+            clone.transform.DOLocalMove(new Vector3(Random.Range(-700, 700), -600, 0), 0.2f);
+            yield return new WaitForSeconds(0.1f);
+        }       
         StartCoroutine("damageco", 10);
     }
     IEnumerator Search()//통찰 스킬
@@ -344,7 +399,7 @@ public class SkillManager : MonoBehaviour
             case "인페르노":
                 return "Inferno";
             case "참격":
-                return "Slash2";
+                return "Cut";
         }
         return "오류";
     }
